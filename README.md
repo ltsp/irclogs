@@ -5,6 +5,7 @@ We want to move irclogs.ltsp.org here, as follows:
 - The ltsp supybot (limnoria) will be keeping daily logs,
 - And it will be committing them in this repository every 5-10 minutes,
 - At which point a Jekyll script will be converting them into an indexed site.
+- And publish them in https://ltsp.github.io/irclogs/
 
 If anyone knows Jekyll and can help with this... ping!
 
