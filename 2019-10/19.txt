@@ -1,0 +1,274 @@
+2019-10-19T05:04:04  <alkisg> Leolo_2: is centos 6 using systemd?
+2019-10-19T05:11:50  <alkisg> Google says it's using sysvinit; so nah; let's keep ltsp19 only for systemd distributions
+2019-10-19T05:12:26  <alkisg> But I thought that bcg already had working packages for ltsp5 on centos...
+2019-10-19T05:17:04  *** quinox <quinox!~quinox@ghost.qtea.nl> has quit IRC (Quit: WeeChat 2.4)
+2019-10-19T05:19:46  *** quinox <quinox!~quinox@ghost.qtea.nl> has joined #ltsp
+2019-10-19T06:38:40  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-19T07:04:21  <alkisg> woernie: did you manage to solve all the issues?
+2019-10-19T07:14:26  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-19T07:23:01  *** adrianor1 <adrianor1!~adrianorg@179.179.75.131> has joined #ltsp
+2019-10-19T07:25:16  *** adrianorg <adrianorg!~adrianorg@177.18.173.66> has quit IRC (Ping timeout: 240 seconds)
+2019-10-19T07:46:50  *** Leolo_2 <Leolo_2!~fil@184-75-132-167.dr.cgocable.ca> has quit IRC (Ping timeout: 240 seconds)
+2019-10-19T07:52:55  <bcg> my work is for centos 7, not 6
+2019-10-19T07:54:02  <alkisg> Ah they're not compatible? E.g. ltsp5 runs from ubuntu 12.04 to 18.04 without changes...
+2019-10-19T07:55:27  <bcg> centos 6 is initd and very old, 7 is systemd.
+2019-10-19T07:55:34  <alkisg> OK, ty
+2019-10-19T07:56:35  <alkisg> Btw I'm trying to move ltsp.org and epoptes.org to *.github.io sites, if anyone knows jekyll, I'd welcome some initial pointers...
+2019-10-19T08:58:06  *** statler <statler!~Georg@p5B30EE2F.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-19T09:38:02  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-19T09:38:13  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T11:12:54  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-19T11:13:17  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T11:14:11  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Max SendQ exceeded)
+2019-10-19T11:16:09  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T11:17:45  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Client Quit)
+2019-10-19T11:18:26  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T11:27:57  *** ltsp_user35 <ltsp_user35!4fd398fa@p4FD398FA.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-19T11:30:41  *** ltsp_user35 <ltsp_user35!4fd398fa@p4FD398FA.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-19T13:08:37  *** ltsp_user57 <ltsp_user57!53371506@6.red-83-55-21.dynamicip.rima-tde.net> has joined #ltsp
+2019-10-19T13:09:02  <ltsp_user57> hi
+2019-10-19T13:13:01  *** ltsp_user57 <ltsp_user57!53371506@6.red-83-55-21.dynamicip.rima-tde.net> has quit IRC (Remote host closed the connection)
+2019-10-19T14:25:04  <alkisg> OK https://epoptes.github.io is starting to be readable; https://ltsp.github.io will follow within the week...
+2019-10-19T17:05:16  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has joined #ltsp
+2019-10-19T17:21:15  <alkisg> vagrantc: the new epoptes site, based on jekyll:  https://epoptes.github.io - I will do ltsp.github.io with the same software/theme in a couple of days...
+2019-10-19T17:29:46  <vagrantc> alkisg: still looks about the same, but with very wide margins
+2019-10-19T17:29:48  <vagrantc> :)
+2019-10-19T17:31:31  <vagrantc> alkisg: so, would it be worth having ltsp19 ship "ltsp-server" instead of "ltsp" which is marked with Provides: "ltsp" ?
+2019-10-19T17:31:47  <vagrantc> long-term, i think it'd be nicer to just ship ltsp.
+2019-10-19T17:34:51  <vagrantc> and i'm torn on shipping an ltsp-server metapackage regardless
+2019-10-19T17:35:30  <vagrantc> but if we'll ship "ltsp-server" as part of ltsp 19.x ... it'd be good to do that on the initial upload so it doesn't get stuck in NEW
+2019-10-19T17:43:49  <alkisg> vagrantc: ltsp would be the client package
+2019-10-19T17:44:01  <alkisg> So having ltsp-server provide ltsp, sounds a bit strange
+2019-10-19T17:44:42  <alkisg> (08:29:46 PM) vagrantc: alkisg: still looks about the same, but with very wide margins ==> the web gurus say it's better that way, people focus on reading narrow columns. Go figure.
+2019-10-19T17:45:02  <alkisg> But comparing to the existing ltsp.github.io. it's surely better
+2019-10-19T17:45:22  <alkisg> We may ship an ltsp-server metapackage though, unrelated to provides etc
+2019-10-19T17:49:02  <vagrantc> alkisg: the provides trick was just to workaround the NEW queue ... but long-term i don't think it's the right way
+2019-10-19T17:50:00  <vagrantc> e.g. i could upload to experimental today, but would have to rename a bunch of the files in debian/ltsp.* -> debian/ltsp-server.* and update debian/control ... but could probably upload it today instead of waiting
+2019-10-19T17:50:06  <alkisg> vagrantc: I mean, if one wants to install ltsp in a chroot, he'd do "apt install ltsp", and he'd see ltsp-server getting installed, and get confused
+2019-10-19T17:50:24  <alkisg> (while he'd only want ltsp-client)
+2019-10-19T17:50:40  <vagrantc> alkisg: yes, it's not ideal, like i say, it's immediacy vs. correctness :)
+2019-10-19T17:50:59  <alkisg> I could prepare a metapackage tomorrow
+2019-10-19T17:51:01  <vagrantc> alkisg: but what i'm hearing is you'd rather wait :)
+2019-10-19T17:52:34  <vagrantc> alkisg: so, ltsp-server metapackage ... then we might have to handle upgrades or something... i guess it coudl just be in README.Debian ...
+2019-10-19T17:53:02  <vagrantc> existing installs wouldn't be able to have them side-by-side ...
+2019-10-19T17:53:42  <vagrantc> or NEWS.Debian
+2019-10-19T17:56:33  <alkisg> If we ship what you said, they can be installed side-by-side?
+2019-10-19T17:56:49  <vagrantc> no
+2019-10-19T17:57:18  <vagrantc> side-by-side installs would mean ltsp 19.x would have to only ship "ltsp" and not an ltsp-server metapackage ... (sort of)
+2019-10-19T17:58:15  <vagrantc> the sort of being that any existing installs would probably continue to work, but you'd loose the infrastructure to update old installs ...
+2019-10-19T17:59:24  <vagrantc> alkisg: if we shipped "ltsp" and ... "ltsp-default-install" with depends and/or recommends set appropriately, it could co-exist with ltsp5
+2019-10-19T17:59:29  <alkisg> I think we don't want to bother with automatically upgrading old installs
+2019-10-19T17:59:34  <vagrantc> agreed
+2019-10-19T18:00:25  <vagrantc> basically, what i would prefer moving forward is "ltsp" and a metapackage that is not named "ltsp-server" to avoid conflicting with the existing ltsp-server packages
+2019-10-19T18:00:46  <vagrantc> not sure what a name for the metapackage should be
+2019-10-19T18:01:19  <vagrantc> would it be so bad for "ltsp" to recommends all the stuff currently in suggests?
+2019-10-19T18:01:34  <alkisg> We'd need an ltsp-client package otherwise
+2019-10-19T18:02:20  <alkisg> Currently, the ltsp package contains all the code, but corresponds to the ltsp-client package
+2019-10-19T18:04:43  <alkisg> Maybe we could grow an ltsp-server-dnsmasq package, but that would just avoid the installation line, nothing major
+2019-10-19T18:07:18  <alkisg> Maybe the best is to just leave it in the new queue... we gain the ability for them to coexist
+2019-10-19T18:11:51  <alkisg> In the future, we might actually desire a long installation line... "select one of the following lines, depending on what you want... dnsmasq? isc-dhcp? ipxe? syslinux? grub? etc"
+2019-10-19T18:12:17  <vagrantc> i guess it could make default assumptions based on what's installed?
+2019-10-19T18:12:34  <vagrantc> a little counter to how debian packages generally work
+2019-10-19T18:13:11  <alkisg> I don't think packages can do that. Unless if you mean an `ltsp install` line, in which case  we don't need an ltsp-server package
+2019-10-19T18:13:16  <vagrantc> well, last i looked, it was worth landing in experimental (which is good to do since it's going through NEW anyways)
+2019-10-19T18:13:24  <vagrantc> so ... tag 19.10 ?
+2019-10-19T18:13:31  <alkisg> Sure!
+2019-10-19T18:13:48  <alkisg> I'll work on the site for the next days, soI won't be touching the code
+2019-10-19T18:14:03  <alkisg> After that, I'll check if it runs on xenial etc, and modify whatever's needed
+2019-10-19T18:14:21  <vagrantc> 19.11 is right around the corner anyways :)
+2019-10-19T18:14:32  * alkisg likes that versioning scheme
+2019-10-19T18:14:47  <alkisg> Also mesa and drm are going to following, and maybe even xorg
+2019-10-19T18:14:52  <alkisg> I'll switch epoptes to that too
+2019-10-19T18:15:09  <vagrantc> it's one thing ubuntu did that i wish debian would adopt
+2019-10-19T18:17:50  <alkisg> Meh multitasking creates the stupidest typos... "following" instead of "follow it"...
+2019-10-19T18:17:56  <vagrantc> heh
+2019-10-19T18:18:51  <vagrantc> alkisg: so you're fine with me tagging? i think there were a few more minor typos i'd like to clean up, but otherwise it seemed ready enough for the NEW queue waiting game
+2019-10-19T18:19:08  <vagrantc> alkisg: also, is it plausible for you to start doing signed tags?
+2019-10-19T18:21:51  <alkisg> vagrantc: sure, go ahead and tag please,
+2019-10-19T18:22:05  <alkisg> re: signed tags, no objection at all, I'll just need to read up on how to do that
+2019-10-19T18:28:11  <vagrantc> git tag --sign TAG vs. git tag TAG
+2019-10-19T18:28:21  <vagrantc> and have access to a signing key
+2019-10-19T18:28:28  <vagrantc> of course :)
+2019-10-19T18:34:52  <vagrantc> alkisg: i was a bit configused with ltsp image -m in the ltsp-image manpage ... passing mksquashfs arguments requires using spaces ... and it worked fine for me to add spaces ... but the man page warns against using spaces?
+2019-10-19T18:38:20  <alkisg> vagrantc: I mean, "dont do this:" ltsp image -m param1 param2, but -m "param1 param2"
+2019-10-19T18:38:32  <alkisg> If the explanation is lacking, let's fix it
+2019-10-19T18:39:41  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-19T18:39:56  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T18:40:21  <vagrantc> alkisg: i'll try to update the wording now that it's clear what you mean :)
+2019-10-19T18:57:27  <vagrantc> alkisg: we should record hashes of the downloaded binaries and check them, at least...
+2019-10-19T18:57:39  <vagrantc> alkisg: which means keeping copies of all the versions you might ever ship
+2019-10-19T19:00:25  <vagrantc> alkisg: e.g. https://example.org/downloads/binaries/sha256/asdfasdf1214436.../memtest.0
+2019-10-19T19:00:40  <alkisg> vagrantc: that would require us shipping a new ltsp version for each ipxe update
+2019-10-19T19:00:52  <vagrantc> alkisg: no, you keep the old ones there
+2019-10-19T19:01:09  <alkisg> I mean, if we upload a new ipxe.efi, then the old ltsp doesn't know its hash
+2019-10-19T19:01:16  <vagrantc> true
+2019-10-19T19:01:21  <alkisg> So a new ltsp is needed before the new ipxe.efi can be used
+2019-10-19T19:01:32  <vagrantc> but it also means that someone else can't put arbitrary stuff on that URL
+2019-10-19T19:01:39  <alkisg> At which point, it would be better to just include them in the binary
+2019-10-19T19:01:44  <alkisg> In the .deb
+2019-10-19T19:01:45  <vagrantc> alternately, signed binaries
+2019-10-19T19:01:59  <vagrantc> can't ship binaries in debian packages that aren't built from source
+2019-10-19T19:02:27  <vagrantc> but not having any trust path beyond https is ... dubious
+2019-10-19T19:02:29  <alkisg> What's microcode?
+2019-10-19T19:03:00  <vagrantc> in debian, microcode not build from sources is not in main
+2019-10-19T19:03:13  <vagrantc> e.g. technically outside of debian
+2019-10-19T19:03:29  <alkisg> Btw, we'll be able to avoid all those once debian packages them
+2019-10-19T19:03:40  <alkisg> How can we sign/verify binaries?
+2019-10-19T19:03:52  <alkisg> Also, npm * is in debian
+2019-10-19T19:04:01  <alkisg> And it's downloading things from online, without hashes
+2019-10-19T19:04:07  <alkisg> wget too
+2019-10-19T19:04:44  <vagrantc> i'm not saying nothing does that, but it's very much frowned upon to download an execute arbitrary code
+2019-10-19T19:04:51  <vagrantc> with no trust path...
+2019-10-19T19:05:12  <alkisg> Why isn't https enough?
+2019-10-19T19:05:42  <vagrantc> because certificate authorities that have demonstrated little to no competence are still able to certify all web sites?
+2019-10-19T19:07:35  <vagrantc> the best way forward is to package what we need ... failing that, ship signed sha256sum files and include the public key ltsp trusts in ltsp and verify the signature on the signing file (or each individual file)
+2019-10-19T19:08:21  <vagrantc> e.g. checksums.signed includes checksums for the current files, and are signed by a trusted key.
+2019-10-19T19:08:23  <alkisg> The initial though was to download them directly from boot.ipxe.org,
+2019-10-19T19:08:34  <alkisg> but then I thought I would avoid putting strain on their servers...
+2019-10-19T19:08:37  <vagrantc> i balked at it earlier too :)
+2019-10-19T19:09:15  <alkisg> OK I guess we can include a public signature
+2019-10-19T19:09:36  <vagrantc> so, i'd still be willing to push to experimental without that, but i wouldn't want it to move to unstable/testing/stable in Debian
+2019-10-19T19:10:16  <vagrantc> alkisg: what exactly is needed to package it?
+2019-10-19T19:10:30  <vagrantc> alkisg: some custom ipxe? memtest86*?
+2019-10-19T19:10:31  <alkisg> And the ltsp developers would keep the private key a secret? Or would I be the only one that would have it?
+2019-10-19T19:11:04  <vagrantc> alkisg: alternately, you have a keyring for validity ... e.g. my key, your key, etc.
+2019-10-19T19:11:05  <alkisg> vagrantc: afaik, we'd just need to uncomment a few lines in the debian ipxe package
+2019-10-19T19:11:32  <vagrantc> alkisg: the memtest stuff seems like optional features, but ipxe seems kind of fundamental :)
+2019-10-19T19:11:35  <alkisg> And include the targets in the deb, of course
+2019-10-19T19:12:16  <alkisg> We could also use /boot/memtest86+.bin, but it's less compatible, and it doesn't allow getting back to the menu with Esc
+2019-10-19T19:12:55  <alkisg> And I guess all distributions would need to do those changes too; not sure if ipxe is there in centos or fedora
+2019-10-19T19:13:44  <alkisg> And, we wouldn't be able to ship newer ipxe's outside of the distribution channels; that's not too bad I guess, we can tell users to manually download newer versions if they need them
+2019-10-19T19:14:41  <alkisg> Also, I'm not sure that ipxe for x86 would be there in non-x86 architectures
+2019-10-19T19:14:48  <alkisg> Or grub.signed, if we implement that
+2019-10-19T19:15:02  <vagrantc> yeah, not sure what architectures ipxe supports
+2019-10-19T19:15:19  <alkisg> So I'd have a hard time making a raspberry an ltsp server for x86 clients
+2019-10-19T19:15:58  <vagrantc> with debian and family, you can use multi-arch to get cross-architecture dependencies
+2019-10-19T19:16:07  <vagrantc> well, not dependencies exactly...
+2019-10-19T19:16:38  <vagrantc> requires more sysadmin work, but you're talking about cross-architecture servers, so ...
+2019-10-19T19:16:40  <alkisg> Additionally, if I wanted to boot ubuntu from debian, with secure boot on... I'd have a hard time getting grub.signed from ubuntu, installed on debian
+2019-10-19T19:17:04  <alkisg> I would be much easier if we just used signatures
+2019-10-19T19:17:10  <vagrantc> fair enough
+2019-10-19T19:18:11  <vagrantc> since it's a number of fairly small binaries, might be best to just sign them directly, too
+2019-10-19T19:18:45  <vagrantc> skips the complication of a signed checksum file (and potential security mistakes)
+2019-10-19T19:19:07  <vagrantc> still not immune to downgrade attacks ... but we can only do so much :)
+2019-10-19T19:19:18  <alkisg> Not sure how to "sign binaries"...
+2019-10-19T19:19:41  <alkisg> They're not elf
+2019-10-19T19:19:54  <vagrantc> you can just sign arbitrary data with gpg
+2019-10-19T19:20:08  <alkisg> And is it still bootable?
+2019-10-19T19:20:35  <vagrantc> no, you'll need to extract the binary from the signed result, or used detached signatures
+2019-10-19T19:20:46  <alkisg> ...or a checksum file? :)
+2019-10-19T19:21:04  <vagrantc> same problem, with an added layer of indirection
+2019-10-19T19:21:35  <alkisg> I think the code would be simpler... but I don't mind with whatever we can do in shell
+2019-10-19T19:23:12  <vagrantc> gpg --sign FILE # produces FILE.gpg
+2019-10-19T19:23:28  <vagrantc> gpg -d FILE.gpg > FILENEW
+2019-10-19T19:23:36  <vagrantc> sha256sum FILE FILENEW
+2019-10-19T19:23:51  <vagrantc> the latter just to verify proof that they match
+2019-10-19T19:24:18  <alkisg> OK but people can't just wget them if they want
+2019-10-19T19:24:31  <alkisg> They'll need to know that dance
+2019-10-19T19:25:01  <alkisg> With a separate file, it might be easier for the users to select arbitrary files from history versions
+2019-10-19T19:26:46  <vagrantc> you mean a checksum file?
+2019-10-19T19:27:04  <vagrantc> the dance should be implemented in the ltsp tool, no?
+2019-10-19T19:27:31  <alkisg> Well someone might want to get ipxe.efi to put it in his boot partition
+2019-10-19T19:27:41  <alkisg> Or, get ipxe.efi from upstream
+2019-10-19T19:27:49  <alkisg> It would be confusing to have to un-gpg them
+2019-10-19T19:28:10  <alkisg> I do like to keep things as simple as possible for the users... if possible...
+2019-10-19T19:28:29  <alkisg> As not all of them are sysadmins; some are teachers and have never heard of gpg
+2019-10-19T19:28:48  <vagrantc> which is why the "ltsp" tool should handle it for them?
+2019-10-19T19:29:04  <alkisg> There's no ltsp tool in a standalone pc where the user would want to download ipxe.efi
+2019-10-19T19:29:06  <vagrantc> and then they just copy ipxe.efi from where the tool downloaded it to?
+2019-10-19T19:29:25  <alkisg> Hmm
+2019-10-19T19:29:28  <vagrantc> isn't that outside the scope of "ltsp" then?
+2019-10-19T19:29:30  <alkisg> I don't know it sounds complicated
+2019-10-19T19:29:47  <alkisg> Is it insecure to use a separate file?
+2019-10-19T19:29:59  <vagrantc> e.g. they either have "ltsp" and they use the tool, or they do things manually
+2019-10-19T19:30:39  <alkisg> "what is ipxe.efi.signed?" - I'm trying to avoid hearing that question from users
+2019-10-19T19:30:45  <vagrantc> alkisg: there have been some historic mistakes around signing data, and i think my simple example even implemented some of those mistakes :)
+2019-10-19T19:30:50  <alkisg> Like ubuntu-live.iso.signed; they avoided that
+2019-10-19T19:31:36  <vagrantc> alkisg: you can have both copies of the file present ... signed and unsigned ... and maybe even in a separate directory ... but the tool should handle it securely.
+2019-10-19T19:31:51  <vagrantc> well... "securely" :)
+2019-10-19T19:32:02  <vagrantc> alkisg: anyways, happy to postpone this till after ltsp gets through NEW
+2019-10-19T19:32:43  <alkisg> OK, great. I don't mind the separate signatures/checksums file, but I don't like the ipxe.efi.signed idea...
+2019-10-19T19:33:40  <vagrantc> is there a developer TODO file somewhere? or i guess i file an issue
+2019-10-19T19:34:04  <alkisg> I think I had a TODO in the wiki, and then I deleted it in favor of issues
+2019-10-19T19:34:23  <vagrantc> makes sense
+2019-10-19T19:36:49  <vagrantc> so then it comes down to: sha256sum * > checksums.sha256 && gpg --detach-sign checksums.sha256
+2019-10-19T19:37:03  <vagrantc> (or sha512, or some other reasonably secure checksum tool)
+2019-10-19T19:37:10  <alkisg> Nice
+2019-10-19T19:37:27  <alkisg> And we'd ship our keyrings in the ltsp package
+2019-10-19T19:38:16  <vagrantc> and then wget https://..../checksums.sha256 https://..../checksums.sha256.gpg && gpgv --keyring path/to/keyring.gpg checksums.sha256.gpg && sha256sum -c checksums.sha256 .... i think
+2019-10-19T19:38:58  <vagrantc> could also do clearsigned checksums files, but that has had some security problems in the past, but it would also mean a single file.
+2019-10-19T19:40:06  <vagrantc> see https://deb.debian.org/debian/dists/buster/InRelease vs. https://deb.debian.org/debian/dists/buster/Release.gpg + Release
+2019-10-19T19:41:04  <vagrantc> those are more complicated examples than just using sha256sum ...
+2019-10-19T19:41:34  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-19T19:41:48  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T19:42:11  <vagrantc> but they illustrate the differences ... tricky part is if someone man-in-the-middles InRelease and appends stuff to it
+2019-10-19T19:42:28  <vagrantc> the output of gpg hasn't exactly been always correct in that case
+2019-10-19T19:42:49  <alkisg> Ouch; that sounds.... like a bug in gpg?!
+2019-10-19T19:43:10  <alkisg> Shouldn't it just say "this messaged has been tampered with?"
+2019-10-19T19:43:12  <vagrantc> sort of
+2019-10-19T19:43:18  <alkisg> *message/content/whatever
+2019-10-19T19:43:24  <vagrantc> it's complicated :)
+2019-10-19T19:43:54  <alkisg> Also, maybe we could just check our https certificate?
+2019-10-19T19:44:17  <alkisg> (ourselves, instead of leaving it just up to wget)
+2019-10-19T19:44:20  <vagrantc> like against a specific certificate authority?
+2019-10-19T19:44:43  <alkisg> Against our own certificate file in ltsp.deb
+2019-10-19T19:44:58  <vagrantc> i treat https as either the belt or suspenders, but if you really need to hold pants up, use both :)
+2019-10-19T19:45:10  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-19T19:45:20  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-19T19:46:38  <vagrantc> i think https actually helped against the InRelease attack actually, even with self-signed certs ... but that's a whole different story
+2019-10-19T19:47:06  <vagrantc> alkisg: so, there are a variety of options
+2019-10-19T19:47:11  <vagrantc> i'll file an issue
+2019-10-19T19:47:40  <alkisg> E.g. I see `wget --ca-certificate=file`, not sure if it's safe enough if we just provide that file
+2019-10-19T19:51:00  <vagrantc> github might change which ca they use, and break ltsp until we figure out what they changed to
+2019-10-19T19:51:16  <vagrantc> and figure out weather the change was legitimate
+2019-10-19T19:52:14  <vagrantc> this is why i would prefer to just blindly trust the certificate authorities and also provide another independent signed checksum mechanism for the files
+2019-10-19T19:52:28  <vagrantc> where we have more control over the signing keys
+2019-10-19T19:54:49  <vagrantc> well, blindly trust, as pretty much all web browsers blindly trust
+2019-10-19T19:55:37  <vagrantc> i guess there's some support for pinning... but that's probably a lot harder than just shipping signed checksum files
+2019-10-19T19:59:10  <vagrantc> hrm. can't find the typo i found earlier ... found a new one though... time to tag and upload, i guess
+2019-10-19T20:06:17  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-19T20:33:37  <vagrantc> alkisg: uploaded to experimental/NEW ... now to wait...
+2019-10-19T20:33:57  <vagrantc> unless i messed something up
+2019-10-19T20:36:36  <alkisg> Yey!
+2019-10-19T20:37:55  <alkisg> vagrantc: so now we're waiting for the ftp masters to review?
+2019-10-19T20:38:27  <alkisg> And if it migrates to testing, will ltsp5 be removed from testing?
+2019-10-19T20:39:07  <alkisg> (if so, I should do a last upload to the ltsp5 ppa)
+2019-10-19T20:40:21  <vagrantc> alkisg: the way it's currently packaged, they coexist without issues
+2019-10-19T20:40:31  <vagrantc> at least, i *think* they can coexist
+2019-10-19T20:40:37  <vagrantc> oh, but...
+2019-10-19T20:40:41  <alkisg> vagrantc: isn't it a problem if they both have source:ltsp?
+2019-10-19T20:40:52  <vagrantc> oh, but will need to upload an ltsp5 source package at some point.
+2019-10-19T20:40:56  <vagrantc> yeah, exactly
+2019-10-19T20:41:11  <alkisg> Do we want that? To maintain ltsp5 for another... 10 years or so?
+2019-10-19T20:41:23  <vagrantc> no, i don't
+2019-10-19T20:41:40  <alkisg> Maybe we can just omit the ltsp5 package then, and just point users that need it to a ppa
+2019-10-19T20:42:10  <vagrantc> so it can't exist in the archive, but they could, for example, install the ltsp 5.x packages from buster on a bullseye system, or install the new ltsp 19.x packages from buster-backports when they land
+2019-10-19T20:42:25  <alkisg> Sounds fine to me
+2019-10-19T20:42:56  <alkisg> Also, I like the ability to boot the same chroot/vm either in ltsp5 or in ltsp19 mode
+2019-10-19T20:43:05  <vagrantc> this rewrite seems much easier to maintain and develop :)
+2019-10-19T20:43:31  <alkisg> I think that if someone spends a week and ports it to fedora/opensuse etc, it'll be very easy to maintain it for many distributions too
+2019-10-19T20:44:02  <vagrantc> i couldn't come up with a better name, but ltsp-next was kind of a silly name for the initramfs-tools hook :)
+2019-10-19T20:44:04  <alkisg> E.g. I don't need to have a fedora server to test; just a fedora vm or iso, to test the client side
+2019-10-19T20:44:19  <vagrantc> yes, that part is amazing :)
+2019-10-19T20:44:39  <vagrantc> very excited about the future
+2019-10-19T20:44:52  <alkisg> I think some new users arrived too; let's see
+2019-10-19T20:45:01  <vagrantc> maybe i should actually set up some LTSP stuff on the local network :)
+2019-10-19T20:45:13  <vagrantc> so i actually use it :)
+2019-10-19T20:45:39  <vagrantc> then again ... it probably wouldn't change much
+2019-10-19T20:47:19  <alkisg> I need to remember to pull, then push so that it goes to the launchpad mirror, THEN build the recipe...
+2019-10-19T20:47:55  <alkisg> Building, let's see if it succeeds in xenial... https://code.launchpad.net/~ltsp/+recipe/ltsp-proposed
+2019-10-19T20:48:19  <vagrantc> can't launchpad just mirror github?
+2019-10-19T20:48:37  <alkisg> It can, with a 4 hours delay or so
+2019-10-19T20:48:51  <alkisg> And with occasional hiccups
+2019-10-19T20:49:01  <alkisg> So I prefer to just have two push targets
+2019-10-19T20:51:19  <vagrantc> ah
+2019-10-19T20:52:36  <vagrantc> and the launchpad mirrors aren't pushable, i presume
+2019-10-19T20:54:23  <alkisg> If they're automatic mirrors, then no; so I always do it manually
+2019-10-19T20:58:31  <vagrantc> there are probably some github features that could be used instead...
+2019-10-19T20:58:45  <vagrantc> but that probably requires more work for the moment :)
+2019-10-19T20:59:37  <vagrantc> https://github.com/features/actions
+2019-10-19T21:45:44  <alkisg> vagrantc: is it possible to upload epoptes to buster with just a url change?
+2019-10-19T21:46:00  <alkisg> epoptes.org is expiring in a couple of days, so we move to epoptes.github.io
+2019-10-19T21:46:30  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-19T21:50:49  * alkisg reads https://www.debian.org/doc/manuals/developers-reference/ch05.html#upload-stable ...
+2019-10-19T22:04:36  <vagrantc> alkisg: not likely...

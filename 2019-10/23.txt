@@ -1,0 +1,10 @@
+2019-10-23T11:04:51  *** enaut <enaut!~enaut@p54AA64A0.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-23T11:05:08  *** enaut is now known as Guest24092
+2019-10-23T11:08:20  <Guest24092> @alkisg: is there somewhere documented how the "shared folders" of ltsp-manager work?
+2019-10-23T11:31:33  *** okidoki <okidoki!5b72c3ba@91-114-195-186.adsl.highway.telekom.at> has joined #ltsp
+2019-10-23T11:32:32  *** enaut[m] <enaut[m]!enautmatri@gateway/shell/matrix.org/x-iordagzqehqbzrin> has joined #ltsp
+2019-10-23T11:38:12  *** enaut[m] <enaut[m]!enautmatri@gateway/shell/matrix.org/x-iordagzqehqbzrin> has left #ltsp ("User left")
+2019-10-23T11:38:46  *** enaut[m] <enaut[m]!enautmatri@gateway/shell/matrix.org/x-iordagzqehqbzrin> has joined #ltsp
+2019-10-23T11:47:55  <alkisg> enaut[m]: try google translate in this: http://ts.sch.gr/wiki/Linux/sch-scripts/%CE%9A%CE%BF%CE%B9%CE%BD%CF%8C%CF%87%CF%81%CE%B7%CF%83%CF%84%CE%BF%CE%B9_%CE%BA%CE%B1%CF%84%CE%AC%CE%BB%CE%BF%CE%B3%CE%BF%CE%B9
+2019-10-23T11:48:12  <alkisg> I'm reimplementing shared folders atm
+2019-10-23T11:49:00  <alkisg> If you're planning to keep maintaining ltsp-manager, it might be a good idea for me to create a separate shared-folders package, that both ltsp-manager and sch-scripts would depend upon

@@ -1,0 +1,1 @@
+2019-10-22T15:04:27  <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button

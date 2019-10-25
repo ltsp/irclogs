@@ -1,0 +1,491 @@
+2019-10-17T05:19:01  <ltsp> Error: "bot" is not a valid command.
+2019-10-17T05:21:11  <josht> @alkisg I'm using a debian virtualbox install with fixed disk size, copied the vmdk to /srv/ltsp/images
+2019-10-17T05:21:28  <josht> ran ltsp image debian and it completed file
+2019-10-17T05:22:00  <josht> but when I pxe boot a client I get a error: mount: mounting /dev/loop0 on /root/ failed: No such Device
+2019-10-17T05:22:21  <josht> i tested the NFS server and can mount and view files fine
+2019-10-17T05:22:27  <vagrantc> alkisg: introducing the "ltsp" binary package will wait in NEW until reviewed
+2019-10-17T05:22:45  <alkisg> vagrantc: by whom? Aren't you the one doing the review?
+2019-10-17T05:23:55  <alkisg> josht: did you copy it, or symlink it?
+2019-10-17T05:24:01  <josht> copy
+2019-10-17T05:24:14  <alkisg> There are two ways:
+2019-10-17T05:24:29  <alkisg> put image in /srv/ltsp/images/image.img and NOT run ltsp image, just ltsp kernel, or
+2019-10-17T05:24:36  <alkisg> put image in /srv/ltsp/image.img and run ltsp image
+2019-10-17T05:24:47  <josht> ahh ok
+2019-10-17T05:24:53  <alkisg> In both cases, you can symlink that file to your original vbox dir, so that you don't have to copy
+2019-10-17T05:25:06  <alkisg> if you put it to images/image.img and run ltsp image, it'll try to overwrite itself
+2019-10-17T05:25:24  <vagrantc> alkisg: no
+2019-10-17T05:25:37  <vagrantc> alkisg: it's reviewed by ftp-masters
+2019-10-17T05:25:47  <alkisg> OK; well then better sooner than later :)
+2019-10-17T05:25:51  <alkisg> Thanks!
+2019-10-17T05:26:03  <vagrantc> alkisg: in theory, though in practice it can be hours, minutes, or months
+2019-10-17T05:26:17  <josht> Thanks alkisg I'll have another go
+2019-10-17T05:26:56  <alkisg> Meh mediawiki spam filed up the ltsp.org server
+2019-10-17T05:27:03  <alkisg> No free space for channel logging anymore
+2019-10-17T05:27:23  <vagrantc> alkisg: i can maybe gentle request review ...
+2019-10-17T05:27:49  <alkisg> vagrantc: great; but let's get it to new first, so that we do our part...
+2019-10-17T05:28:11  <alkisg> Is this always the case after major rewrites?
+2019-10-17T05:28:12  <vagrantc> alkisg: indeed :)
+2019-10-17T05:28:20  <vagrantc> alkisg: only if you change package names
+2019-10-17T05:28:31  <alkisg> Gotcha
+2019-10-17T05:28:55  * alkisg waves; breakfast time
+2019-10-17T05:28:56  <vagrantc> dropping packages is fine(though requires some review for unstable->testing), adding packages requires review
+2019-10-17T05:29:09  <vagrantc> er, adding requires *more* review :)
+2019-10-17T05:29:14  <alkisg> :D
+2019-10-17T05:30:53  <josht> another question, this time regarding booting iso's directly
+2019-10-17T05:31:09  <josht> as a livecd
+2019-10-17T05:31:38  <josht> should I just be copying the blah.iso into /srv/ltsp/images/blah.img
+2019-10-17T05:31:47  <josht> and running ltsp -o ipxe
+2019-10-17T05:32:46  <josht> I've tried it with the tails live cd and I get a file not found error for /ltsp/tails/vmlinux
+2019-10-17T06:00:56  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T06:11:20  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T06:12:23  *** alkisg_android <alkisg_android!~yaaic@5-203-224-168.mobile.nym.cosmote.net> has joined #ltsp
+2019-10-17T06:13:17  <alkisg_android> johst, also run ltsp kernel before ltsp ipxe
+2019-10-17T06:13:56  <josht> Thank you!
+2019-10-17T06:14:35  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-17T06:14:39  <alkisg_android> wait, boot as live cd or in ltsp mode?
+2019-10-17T06:15:19  <alkisg_android> ltsp mode is easier as you dont care to find out the correct cmdline
+2019-10-17T06:15:23  <josht> as a live CD
+2019-10-17T06:15:39  <josht> can I boot a .iso in ltsp mode?
+2019-10-17T06:16:10  <alkisg_android> yes
+2019-10-17T06:16:27  <alkisg_android> otherwise, its like this https://github.com/ltsp/community/wiki/Non-LTSP-iPXE-entries
+2019-10-17T06:16:55  <alkisg_android> ltsp mode is a lot better and easier
+2019-10-17T06:17:00  <josht> I'll try ltsp mode
+2019-10-17T06:17:04  <josht> thank you
+2019-10-17T06:17:35  <alkisg_android> np
+2019-10-17T06:25:02  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T06:33:56  <josht> alkisg_android - working now - thank you so much
+2019-10-17T06:34:42  <josht> ltsp can't extract the kernel from the tails iso but if you mount it you can manually find it and copy across
+2019-10-17T06:35:04  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T06:43:30  *** woernie <woernie!~werner@p50867A20.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-17T06:56:18  *** alkisg_android <alkisg_android!~yaaic@5-203-224-168.mobile.nym.cosmote.net> has quit IRC (Read error: Connection reset by peer)
+2019-10-17T06:56:51  <alkisg> josht: you may use the --kernel-initrd parameter to tell ltsp where the kernel is
+2019-10-17T06:57:38  <josht> ok, I'll give that a go
+2019-10-17T06:57:52  <alkisg> How are the kernel/initrd named in the live iso?
+2019-10-17T06:59:14  <josht> they are named initrd.img and vmlinux inside the live folder at the root where you mount the iso
+2019-10-17T07:00:03  <alkisg> man ltsp kernel => examples
+2019-10-17T07:00:20  <alkisg>            ltsp kernel --kernel-initrd="live/vmlinux-* s|vmlinux|initrd.img|"
+2019-10-17T07:00:53  <alkisg> And if you want you may open an ltsp/ltsp issue to put this upstream
+2019-10-17T07:01:11  <alkisg> Do mention the exact iso name where this is found
+2019-10-17T07:01:29  <josht> ok, will do!
+2019-10-17T07:07:07  <alkisg> Whoops sorry without the -* there
+2019-10-17T07:07:18  <alkisg>  ltsp kernel --kernel-initrd="live/vmlinux s|vmlinux|initrd.img|"
+2019-10-17T07:09:32  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T07:17:49  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T07:19:08  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T07:24:51  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T07:27:04  <meo> you're trying to run *tails* from network boot?
+2019-10-17T07:28:18  <josht> no, it just a iso i had to hand
+2019-10-17T07:28:29  <josht> just playing at the moment
+2019-10-17T07:46:10  *** Durok <Durok!5f5ac874@ip5f5ac874.dynamic.kabel-deutschland.de> has joined #ltsp
+2019-10-17T07:56:02  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:dfe:c076:99b8:91ef> has joined #ltsp
+2019-10-17T07:57:54  <Durok> Hi, with the new LTSP version how do I implement guest sessions? So far I have a working setup with the guests home folders on an NFS share (/home/nfs) as described here: https://github.com/ltsp/ltsp/blob/master/docs/ltsp-nfs.8.md.That was easy to do, but how can I modify the guest folder (deleting the folder and recreating it from a template)
+2019-10-17T07:57:54  <Durok> before login?I tried it with a POST_INIT_="" line in ltsp.conf. That failed apparently because it got executed before the NFS share was mounted.I would be happy getting some tips to put me in the right direction!
+2019-10-17T07:59:45  <alkisg> Durok: you create a custom session in /usr/share/xsessions/guest.desktop
+2019-10-17T07:59:51  <alkisg> And you put: Exec=your-script
+2019-10-17T08:00:12  <alkisg> That script deletes whatever it wants, initializes content, and finally it execs the real session
+2019-10-17T08:00:22  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T08:00:40  <alkisg> Someone should really write a wiki page about that :)
+2019-10-17T08:00:44  <alkisg> It's a very common question
+2019-10-17T08:01:26  <alkisg> This method works with any installation, it's not ltsp specific, but people are confused because the old ltsp had some failed attempts for implementing kiosk/guest sessions internally...
+2019-10-17T08:01:42  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Client Quit)
+2019-10-17T08:02:53  <Durok> Ah thank you very much! I will try that now.
+2019-10-17T08:02:54  <Durok> Yeah that was probably what blindfolded me :D
+2019-10-17T08:03:33  <alkisg> Durok: well if you write a wiki page after you've done it, lots of people will thank you :)
+2019-10-17T08:04:03  <Durok> Might try that, after I get everything working correctly
+2019-10-17T08:05:51  <woernie> How do I mount smb-shares for my users and clients(thin & fat). Users authenticate against a Samba-DC, but I can not mount users smb-home and group-shares.
+2019-10-17T08:06:19  <alkisg> woernie: ltsp5 or ltsp19?
+2019-10-17T08:08:12  <woernie> ltsp5 where I can look this up i'm pretty new to ltsp and I installed it a few mounth ago
+2019-10-17T08:08:29  <alkisg> ltsp-info | nc termbin.com 9999
+2019-10-17T08:08:38  <alkisg> This tells us all the necessary information
+2019-10-17T08:10:13  <woernie> ltsp5 on Ubuntu 18.04.3 LTS
+2019-10-17T08:10:41  <alkisg> So I'm guessing you didn't set up authentication in the chroot; you're still using ssh for authentication
+2019-10-17T08:11:08  <alkisg> How would you mound smb if you weren't using ltsp? By fstab? By pam?
+2019-10-17T08:13:45  <woernie> authentication by PAM I tried mounts by fstab , also by ltsp and by Pam but I couldn't figured it out.
+2019-10-17T08:14:03  <alkisg> LTSP5 doesn't support PAM
+2019-10-17T08:14:08  <alkisg> LTSP19 supports PAM
+2019-10-17T08:14:42  <alkisg> So the idea is that each user mounts his own share after authentication?
+2019-10-17T08:14:57  <woernie> yes
+2019-10-17T08:15:04  <alkisg> Did you make this work without ltsp?
+2019-10-17T08:15:28  <woernie> yes with pam on pure linux clients
+2019-10-17T08:15:37  <alkisg> OK then it should be doable with LTSP19
+2019-10-17T08:16:02  <alkisg> Note that LTSP19 doesn't support thin clients
+2019-10-17T08:16:08  <woernie> can I update from ltsp5 to ltsp19
+2019-10-17T08:16:33  <alkisg> Not really, it's very different. You can keep both ltsp5 and ltsp19 installed, but only one of them can be active (due to dnsmasq.conf)
+2019-10-17T08:17:14  <alkisg> Another idea would be to just mount everything on the server even if it's smb, and then let the clients use the default sshfs
+2019-10-17T08:17:41  <alkisg> I.e. abort the "user mounts" idea and keep on using ltsp5
+2019-10-17T08:18:43  *** statler <statler!~Georg@p5B30EE2F.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-17T08:18:49  <woernie> I will have a look at the sshfs.
+2019-10-17T08:19:09  <alkisg> sshfs is the default, you don't need to do anything for that, just mount /home/users on the server
+2019-10-17T08:19:17  <alkisg> and sshfs will use it
+2019-10-17T08:20:36  <woernie> and where I mount the others shares
+2019-10-17T08:20:46  <alkisg> getent passwd user
+2019-10-17T08:20:54  <alkisg> => tells you the path to the user home
+2019-10-17T08:21:05  <alkisg> If it's /home/user, then that directory or symlink should exist
+2019-10-17T08:21:15  <alkisg> if it's a symlink, the target (real mount) can be anywhere
+2019-10-17T08:21:39  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T08:23:21  <woernie> do I mount this with fstab or lts.conf
+2019-10-17T08:25:05  <alkisg> On the server? fstab. lts.conf is only for the clients.
+2019-10-17T08:27:06  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T08:27:57  <woernie> who I handle the credential? my fstab://debian-df/gemeinsam /media/server/gemeinsam cifs gid=10005,username=werner,password=XXXXXX,file_mode=0664,dir_mode=0770 0  0
+2019-10-17T08:28:08  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T08:28:47  <alkisg> Didn't you say you managed to do it without ltsp?
+2019-10-17T08:28:52  <alkisg> It's the same on the server too
+2019-10-17T08:30:04  <alkisg> You can either mount a global "users" directory from cifs, which has subdirectories like "users/user1, users/user2" etc,
+2019-10-17T08:30:29  <alkisg> or you can have multiple fstab lines , one for each user, "users/user1", "users/user2" etc in fstab
+2019-10-17T08:35:11  <woernie> without ltsp I managed it by pam_mount.conf
+2019-10-17T08:37:38  <alkisg> This only works for one user
+2019-10-17T08:37:48  <alkisg> Now you need to mount multiple directories (or a central one)
+2019-10-17T08:48:29  *** statler <statler!~Georg@gwrz.lohn24.de> has joined #ltsp
+2019-10-17T08:49:14  <woernie> looks good thanks. I will have a look if the rights are right
+2019-10-17T08:49:38  <alkisg> Right :)
+2019-10-17T09:02:42  *** kjackal_v2 <kjackal_v2!~quassel@athedsl-4546118.home.otenet.gr> has joined #ltsp
+2019-10-17T09:02:47  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:dfe:c076:99b8:91ef> has quit IRC (Ping timeout: 276 seconds)
+2019-10-17T09:09:58  *** adrianorg <adrianorg!~adrianorg@191.32.96.224> has joined #ltsp
+2019-10-17T09:20:44  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T09:32:49  <woernie> hello again. for my thinclients it works fine, but not for the fatclients. I see the directories but only root can mount in lts.conf I have FSTAB_1="server:/media/server/gemeinsam  /media/server/gemeinsam         sshfs    defaults,nolock 0       0"
+2019-10-17T09:58:28  *** Durok <Durok!5f5ac874@ip5f5ac874.dynamic.kabel-deutschland.de> has quit IRC (Remote host closed the connection)
+2019-10-17T10:06:59  *** Durok <Durok!5f5ac874@ip5f5ac874.dynamic.kabel-deutschland.de> has joined #ltsp
+2019-10-17T10:09:25  <woernie> I tried it with nfs but I get also only root can mount
+2019-10-17T10:18:59  *** adrianor1 <adrianor1!~adrianorg@177.18.172.1> has joined #ltsp
+2019-10-17T10:22:31  *** adrianorg <adrianorg!~adrianorg@191.32.96.224> has quit IRC (Ping timeout: 265 seconds)
+2019-10-17T10:25:44  *** woernie <woernie!~werner@p50867A20.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-17T11:24:01  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T12:09:36  *** Faith <Faith!~Paty_@unaffiliated/faith> has joined #ltsp
+2019-10-17T12:11:20  *** section1 <section1!~section1@178.33.109.106> has joined #ltsp
+2019-10-17T12:54:31  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-17T13:43:50  *** woernie <woernie!~werner@p50867A20.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-17T14:26:03  *** woernie <woernie!~werner@p50867A20.dip0.t-ipconnect.de> has quit IRC (Ping timeout: 246 seconds)
+2019-10-17T14:26:46  <georgeneophytou> I have changed the subnet which the LTSP server lives, clients can no longer boot, what is needed here? Do I need to reconfigure DHCPproxy?
+2019-10-17T14:28:33  <georgeneophytou> im looking at /etc/dnsmasq.d/ltsp-dnsmasq.conf lines 29 and 33, here I can see the old subnet
+2019-10-17T14:28:47  <georgeneophytou> now should I modify this file directly or is there another method?
+2019-10-17T14:32:00  <georgeneophytou> I have edited this file directly and restarted dnsmasq service, clients can boot again
+2019-10-17T14:47:14  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T14:58:45  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T14:59:57  <alkisg> georgeneophytou: ltsp -o dnsmasq, when the subnet is changed
+2019-10-17T15:01:32  <georgeneophytou> thanks alkisg
+2019-10-17T15:01:38  <alkisg> np
+2019-10-17T15:02:24  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Client Quit)
+2019-10-17T15:03:31  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-17T15:03:45  <georgeneophytou> are there currently any options to run LTSP server in high availability? or to have backup LTSP server?
+2019-10-17T15:05:01  <alkisg> You can do various things for that; ltsp doesn't have any code regarding this though
+2019-10-17T15:05:13  <alkisg> E.g. if you have 2 proxydnsmasq servers, one of them will answer anyway
+2019-10-17T15:05:24  <alkisg> If you use ceph, it's distributed
+2019-10-17T15:05:59  <georgeneophytou> im trying to find a solution currently to have a backup in case the primary LTSP server goes down
+2019-10-17T15:06:26  <georgeneophytou> so firstly I will need a way to mirror files and users between the two server
+2019-10-17T15:06:51  <alkisg> A daily backup via rsync is usually good enough
+2019-10-17T15:07:15  <alkisg> Overengineered solutions are frequently error prone
+2019-10-17T15:07:22  <georgeneophytou> true true
+2019-10-17T15:07:59  <alkisg> E.g. if you have a raid, you can just put the server disks to a second server in 2 minutes
+2019-10-17T15:08:28  <georgeneophytou> can you explain that please?
+2019-10-17T15:08:29  <alkisg> That, along with a daily rsync/backup, is usually fine
+2019-10-17T15:08:59  <alkisg> E.g. suppose you install the server with 3 disks in raid-5
+2019-10-17T15:09:09  <alkisg> That gives you disk space of 2 disks
+2019-10-17T15:09:20  <alkisg> If the server hardware fails, board, cpu, whatever, you move those disks to another server
+2019-10-17T15:09:30  <alkisg> And it just boots; linux doesn't care about hardware changes
+2019-10-17T15:09:44  <alkisg> If one disk fails, it's still fine, because of raid
+2019-10-17T15:10:03  <alkisg> So the only part that can actually cause issues is if the file system fails, or if rm -rf / is executed, etc,
+2019-10-17T15:10:09  <alkisg> that's where the daily backup helps
+2019-10-17T15:11:09  <georgeneophytou> yes you have a point
+2019-10-17T15:13:48  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-17T16:39:19  <Durok> Heyho I made a short write-up for setting up guest sessions. All feedback is very much welcome, including better and easier ways to set this up.
+2019-10-17T16:39:20  <Durok> https://durok.tech/gitea/durok/LTSP_19_GUESTS
+2019-10-17T16:39:46  *** statler <statler!~Georg@gwrz.lohn24.de> has quit IRC (Remote host closed the connection)
+2019-10-17T16:41:59  <fiesh> nice
+2019-10-17T16:43:15  <alkisg> Durok: no no no no! This is the correct place! :D https://github.com/ltsp/community/wiki
+2019-10-17T16:43:53  <alkisg> This will help developers fix a few inaccuracies, and help users contribute more, and help the content become better
+2019-10-17T16:44:02  <Durok> As soon as I know how to put it there I will!
+2019-10-17T16:44:09  <alkisg> Just click edit
+2019-10-17T16:44:15  <alkisg> It's user-editable
+2019-10-17T16:44:39  <ogra> but users need to click ?
+2019-10-17T16:44:42  <alkisg> You sign-in to github first of course
+2019-10-17T16:44:51  <alkisg> ogra: yes! They'll also probably need a mouse!
+2019-10-17T16:44:52  <ogra> you're always making it sooo hard !!!
+2019-10-17T16:44:56  <Durok> Found it thanks!
+2019-10-17T16:45:01  <ogra> :D
+2019-10-17T16:45:17  * alkisg isn't sure if github also requires a cat and a dog, but definitely a mouse
+2019-10-17T16:46:17  <Durok> Seems to work.
+2019-10-17T16:46:18  <Durok> https://github.com/ltsp/community/wiki/Guest-session-for-LTSP-19
+2019-10-17T16:46:35  <alkisg> Durok: no need for LTSP 19; Guest session is enough
+2019-10-17T16:46:48  <alkisg> As it's in the ltsp19 wiki (which will become ltsp20 next year)
+2019-10-17T16:47:06  <ogra> one hopes ...
+2019-10-17T16:47:31  *** kjackal_v2 <kjackal_v2!~quassel@athedsl-4546118.home.otenet.gr> has quit IRC (Ping timeout: 268 seconds)
+2019-10-17T16:49:42  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c8ea:ac45:e32f:94d8> has joined #ltsp
+2019-10-17T16:50:12  <alkisg> Durok: ltsp nfs --nfs-home=1 => automatically creates the exports for /home
+2019-10-17T16:50:59  <alkisg> LIGHTDM_CONF='user-session=guest' ==> nice one ;)
+2019-10-17T16:51:51  <alkisg> Also note that if your clients have enough ram to fit their /home/guest in it, then you may use a single account for any number of clients, without even using nfs for /home
+2019-10-17T17:00:50  <Durok> alkisg: Changed the nfs section. Yeah I couldn't get the one user setup to work. Might try that tomorrow.
+2019-10-17T17:01:23  <alkisg> Durok: ping me if you need help anywhere
+2019-10-17T17:03:25  <alkisg> Btw if you put the session in /etc/ltsp, and symlink it to /usr/share/xsessions with a POST_INIT command, then you don't need `ltsp image`, and you can also use live CDs for the image etc etc; it's not "guest specific"
+2019-10-17T17:04:14  <alkisg> In other words, putting all image customizations in /etc/ltsp allows one to just run `ltsp initrd` and use any non-customized chroot
+2019-10-17T17:06:43  <alkisg> Ubuntu 19.10: The Chromium browser is only available as a snap in 19.10.  This blog post has more details.  ==> meeeeh
+2019-10-17T17:06:56  * alkisg will need to copy it from debian to the ppa :/
+2019-10-17T17:07:58  <ogra> or point people to firefox
+2019-10-17T17:09:42  <ogra> (i thought you had snaps working)
+2019-10-17T17:10:59  <alkisg> Oh snaps are working fine, but I still hate the idea :)
+2019-10-17T17:11:14  <alkisg> It's like we're moving to windows 3.11 after 20 years in linux
+2019-10-17T17:11:23  <ogra> because you dont have to maintain chromium ;)
+2019-10-17T17:11:32  <alkisg> Eh, debian will maintain it anyway
+2019-10-17T17:11:41  <alkisg> No need for any ubuntu developer to spend time on it :)
+2019-10-17T17:11:42  <ogra> from a dev POV it is the greatest improvement in the lat decade
+2019-10-17T17:11:53  <ogra> *last
+2019-10-17T17:12:07  <alkisg> If the .deb infrastructure needs fixing, by all means it should be done
+2019-10-17T17:12:16  <alkisg> But bundling the dependencies sounds so silly
+2019-10-17T17:12:24  <ogra> creating snaps is a breeze (not even 10% of the wrk a deb takes) ... maintaining and keeping them up to date too ...
+2019-10-17T17:12:26  <alkisg> It introduces security issues instead of fixing them
+2019-10-17T17:12:40  <alkisg> Eh, create an easy way to make .debs then
+2019-10-17T17:12:48  <alkisg> Even .spec to deb, so that it's cross platform
+2019-10-17T17:13:11  <ogra> yes, they are slightly bigger but they are a highly compressed, GPG signed squashfs ... that compensates for the size again
+2019-10-17T17:13:30  <alkisg> squashfs is usually bigger than tar.xz
+2019-10-17T17:13:42  <alkisg> And all those loop mounts.... look awful
+2019-10-17T17:13:53  <ogra> but you cant run a tar.gz ... and it is really really hard to make a tar.gz readonly ;)
+2019-10-17T17:14:00  <quinox> (I dislike snaps, but it's not strictly "windows 3.11": mac applications are big folders that also contain all of their dependencies)
+2019-10-17T17:14:16  <alkisg> I think the only benefit for appimage/snaps/flatpaks etc are for unsafe, non open source code, that needs to run sandboxed
+2019-10-17T17:14:20  <alkisg> And I avoid such apps
+2019-10-17T17:14:27  <ogra> nah
+2019-10-17T17:14:39  <ogra> also you cant really compare the three at all
+2019-10-17T17:14:47  <alkisg> Macs also need to run unsafe code
+2019-10-17T17:14:51  <ogra> snaps are designed originaly for cli and server
+2019-10-17T17:14:59  *** ltsp_user50 <ltsp_user50!5b595a44@HSI-KBW-091-089-090-068.hsi2.kabelbw.de> has joined #ltsp
+2019-10-17T17:15:02  <ogra> desktop came later ...
+2019-10-17T17:15:22  <ogra> appimage and flatpak are just delivery/snadbox mechanisms for desktop apps
+2019-10-17T17:15:40  <alkisg> Anyway, I hope all this sandboxing bubble will soon go away, and developers will again focus in normal packaging with normal dependencies
+2019-10-17T17:15:50  <ogra> i doubt that
+2019-10-17T17:16:12  <alkisg> I really wouldn't like to have to worry "oh are any of my 1234 snaps affected by this security flaw in this library?"
+2019-10-17T17:16:16  <fiesh> appimage is great for deploying pre-compiled applications
+2019-10-17T17:16:27  <fiesh> like games or something
+2019-10-17T17:16:28  <ogra> if you have a desktop :)
+2019-10-17T17:16:59  <ogra> alkisg, well, that shows you never maintained a snap ;)
+2019-10-17T17:17:06  <fiesh> not saying I'm a big fan of things not included in the distribution's package manager, but sometimes such software exists
+2019-10-17T17:17:15  <ogra> as a developer the store regulary sends you security audits of your snap
+2019-10-17T17:17:27  <alkisg> Truly, and I see so many down sides in their architecture, that I'll switch to debian if I ever have to use snaps in Ubuntu :)
+2019-10-17T17:17:30  <fiesh> snap was really Ubuntu-centric though
+2019-10-17T17:17:30  <ogra> (which you can indeed ignore ...)
+2019-10-17T17:17:32  <fiesh> last time I checked
+2019-10-17T17:17:36  <fiesh> which I heavily disliked
+2019-10-17T17:17:41  <ogra> has never been ubuntu centric
+2019-10-17T17:17:48  <ogra> since we started to develo it in 2014
+2019-10-17T17:17:54  <ogra> +p
+2019-10-17T17:18:14  <ogra> we have tried to cover all distros from day one
+2019-10-17T17:18:20  <alkisg> I don't think they're Ubuntu-centric; but usually things that are developed within Ubuntu, get ignored by Redhat etc... not all the times, but usually
+2019-10-17T17:18:26  <fiesh> I remember that I looked into using them under Gentoo, and the bottom line was "ain't working"
+2019-10-17T17:19:08  <ogra> sadly two days after we announced desktop support for snaps in 2016 RH freaked out and quickly turned xdg-app into flatpak and announced it as the new shiny app delivery mechanism
+2019-10-17T17:19:08  <alkisg> At some point canonical was blamed for nih syndrome; but I do think that redhat has that
+2019-10-17T17:19:31  <ogra> (and xdg-app had been dead in the water for years before)
+2019-10-17T17:19:54  <ogra> alkisg, i wish they would be ignored by RH
+2019-10-17T17:20:32  <ogra> sadly RH is actively firing against it ... that started with upstart (did you know lennart was an initial and active contributor to upstart ?)
+2019-10-17T17:21:38  <alkisg> True, I think that upstart vs systemd does show RH's nih syndrome
+2019-10-17T17:21:50  <ogra> well
+2019-10-17T17:22:02  <ogra> i think the NIH syndrome is a made up myth :)
+2019-10-17T17:22:08  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has joined #ltsp
+2019-10-17T17:22:19  <ogra> you have to invent things if you progress
+2019-10-17T17:22:24  <alkisg> Well, if lawyers say "don't invest there because..." you reimplement from scratch
+2019-10-17T17:22:38  <ogra> true, but thats has rarely happened
+2019-10-17T17:22:40  <alkisg> However you might callthat
+2019-10-17T17:23:12  <ogra> upstart was initially celebrated since we had something to show off against the new apple init technology ...
+2019-10-17T17:23:26  <ogra> and there was nothing comparable to it
+2019-10-17T17:23:44  <ogra> today the NIH topic is snaps ... "it is canonical flatpak"
+2019-10-17T17:24:07  <alkisg> If (example) redhat ends up investing 90% of the code in upstart, and yet the initial copyright is canonical's, this gives fame to canonical at RH's expense
+2019-10-17T17:24:18  <alkisg> So managers may decide to reimplement instead
+2019-10-17T17:24:42  <ogra> that snaps are 2 years older than flatpak and that both are technologically not even remotely comparable (pakage format vs desktop sandbox delivery tool) are completely ignored
+2019-10-17T17:25:18  <vagrantc> but what they have in common is i've basically avoided either of them :)
+2019-10-17T17:25:29  <ogra> haha, hey vagrantc
+2019-10-17T17:25:32  * alkisg wholeheartily agrees with vagrantc this time :D
+2019-10-17T17:25:52  <vagrantc> alkisg: that could be dangerous!
+2019-10-17T17:25:54  <alkisg> I just stated that "if Ubuntu forces me to use snaps, I'll switch to Debian" :D
+2019-10-17T17:26:04  <ogra> i love that i can have the latest VLC on my 16.04 desktop and be sure it is kept up to date by upstream
+2019-10-17T17:26:18  <alkisg> Then make a tool for upstream to easily produce a .deb
+2019-10-17T17:26:29  <alkisg> No need to bundling dependencies
+2019-10-17T17:26:47  <alkisg> And if different versions of libraries are needed, make it happen for .debs too
+2019-10-17T17:26:48  <ogra> they have debs ... and they need to build them for every distor and its grandchild separately
+2019-10-17T17:26:59  <alkisg> Right, that can be avoided
+2019-10-17T17:27:06  <vagrantc> i see the appeal of snap/flatpack/etc but it's not my style ... i'm moving into the guix/nix camp anyways :)
+2019-10-17T17:27:13  <ogra> the snap they build runs the same on my 16.04 desktop as it runs on lennarts current fedora box ;)
+2019-10-17T17:27:15  <alkisg> Google chrome sends the same .deb for any distro/version
+2019-10-17T17:27:32  <alkisg> They don't give differently compiled debs
+2019-10-17T17:27:37  <ogra> because itis statically built
+2019-10-17T17:28:00  <alkisg> And if one just builds an infrastructure for declaring dependencies, it can be done for all without static builds
+2019-10-17T17:28:18  <alkisg> A wrapper would state "I need libcXX, javaYY", and the proper paths would be set
+2019-10-17T17:28:21  <ogra> so you would create another new package system ?
+2019-10-17T17:28:24  <vagrantc> don't snaps or flatpacks typically bundle all their non-statically-built dependencies?
+2019-10-17T17:28:32  <ogra> yes
+2019-10-17T17:28:40  <alkisg> Not at all. Just support multiple libraries in the existing infrastructure
+2019-10-17T17:28:57  <ogra> ther are library snaps
+2019-10-17T17:28:59  <vagrantc> alkisg: that's an adventure debian-based systems are not well equipped for
+2019-10-17T17:29:02  <alkisg> So one could have qt4 and qt5 installed in .deb format
+2019-10-17T17:29:12  <alkisg> And yet that's the proper solution, not snaps
+2019-10-17T17:29:19  <ogra> or in snap format ;)
+2019-10-17T17:29:22  <ogra> we have that
+2019-10-17T17:29:40  <alkisg> snaps can declare external dependencies?
+2019-10-17T17:29:46  <vagrantc> this is one case where i do think an alternative approach is more viable- packaging multiple concurrent versions of things.
+2019-10-17T17:29:50  <ogra> KDE has nearly completely moved to snaps ... they have all the libs as content provide snap
+2019-10-17T17:30:05  <alkisg> KDE or Kubuntu?
+2019-10-17T17:30:11  <alkisg> KDE on Fedora will use snaps?
+2019-10-17T17:30:13  <ogra> you can declare a "default provider" snap ... that gives you your lib framework
+2019-10-17T17:30:21  <ogra> KDE upstream
+2019-10-17T17:30:33  <alkisg> If I have 1000 snaps that need qt5, do I have qt5 one time or 1000 times?
+2019-10-17T17:30:38  <ogra> they have most of their apps in the snap store nowadays
+2019-10-17T17:30:43  <ogra> and maintain them themselves
+2019-10-17T17:30:47  <vagrantc> alkisg: ok, since i can land "ltsp" in experimental, i think i'll work on that first ... and then solve the stupid security issues with ldm
+2019-10-17T17:30:58  <alkisg> vagrantc: great!
+2019-10-17T17:31:03  <vagrantc> "solve" as in briefly test and announce and upload.
+2019-10-17T17:31:11  <ogra> you have QT5 one time if the devs all used the same default provider
+2019-10-17T17:31:13  * vagrantc has never waited so long on a one-line fix.
+2019-10-17T17:31:36  <ogra> but sice snaps do not restrict you you will likely have some apps that simply bundle it for the ease of development
+2019-10-17T17:32:00  <ogra> snaps are really for developers after all
+2019-10-17T17:33:15  <ogra> you can build your app the arch/gentoo way by building *everything* from upstream source ... you and use the debian/ubuntu way and simply build against archive packages or you can build against a library snap that acts as default provider and only ship your app binary
+2019-10-17T17:33:16  <alkisg> I don't think linux is ready for that kind of security flaw. If all apps come as binaries with whatever bundled dependencies, hackers will soon make us need an antivirus
+2019-10-17T17:33:44  <ogra> so for ie. kubuntu and the ubuntu desktop you will have the lib snaps in use and small apps
+2019-10-17T17:34:09  <ogra> for something third party you will likely rather see the bundled approach
+2019-10-17T17:34:31  <alkisg> Anyways, ty for all the input; /me crosses fingers that he'll be able to continue using .debs for a long time :)
+2019-10-17T17:34:40  <mwalters> isn't there already the risk of dependency hijacking (like with NPM) with how apt currently works?
+2019-10-17T17:34:57  <ogra> not with a trusted archive
+2019-10-17T17:35:07  <ogra> the prob is maintained scripts in debs
+2019-10-17T17:35:10  <mwalters> sure, e.g., the official repos
+2019-10-17T17:35:12  <alkisg> With apt, I can run `debsums` and check all the files in my hard disk against signed sources
+2019-10-17T17:35:13  <ogra> and things like PPAs
+2019-10-17T17:35:45  <mwalters> I'm not familiar with how the publishes is deemed trusted, so maybe I'm missing something
+2019-10-17T17:35:51  <mwalters> s/publishes/publisher
+2019-10-17T17:35:56  <ogra> you can have a PPA that has "fancy-package-super-game", people add it ... the maintainer script now gets full root access to your system and can install any backdoor you want
+2019-10-17T17:36:05  <mwalters> yes, that's what I'm talking about
+2019-10-17T17:36:26  <ogra> well, as long as you stick with the default debian and ubuntu archives you are safe
+2019-10-17T17:36:43  <mwalters> even with regard to universe/multiverse?
+2019-10-17T17:36:48  <ogra> as soon as you add third party archives to apt it is a matter of luck and trust
+2019-10-17T17:36:48  <mwalters> or are those "not default"?
+2019-10-17T17:36:56  <ogra> they are default
+2019-10-17T17:37:12  <alkisg> Universe/multiverse packages are still developed by debian/ubuntu developers
+2019-10-17T17:37:19  <ogra> rigt
+2019-10-17T17:37:23  <ogra> *right
+2019-10-17T17:37:29  <ogra> inside a trusted archive
+2019-10-17T17:37:30  <mwalters> Gotcha... so there isn't a similar attack vector as NPM
+2019-10-17T17:37:33  *** woernie_ <woernie_!~werner@p5B296156.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-17T17:37:37  <ogra> well
+2019-10-17T17:37:38  <mwalters> (or at least as big of a risk as NPM)
+2019-10-17T17:37:45  <alkisg> So one would have to spend some time, to become one, and then risk everything to send malicious code, and then have his access revoked when discovered
+2019-10-17T17:37:52  <ogra> we started snaps because we have numbers about PPA usage :)
+2019-10-17T17:38:08  <ogra> te iitial idea was really to replace PPAs with something secure
+2019-10-17T17:38:13  <alkisg> Meaning PPA usage is high, or low? I'd imagine high?
+2019-10-17T17:38:25  <ogra> because people started more and more adding random libreoffice PPAs ... firefox PPAS etc etc
+2019-10-17T17:38:26  <alkisg> How are snaps more secure than PPAs?
+2019-10-17T17:38:31  <Durok> alkisg: Ah I really like the idea of symlinking the guest session. Completely forgot about the xorg symlink example. Changed it now.
+2019-10-17T17:38:52  <ogra> they are completely confined ... a snap can not access anything by default
+2019-10-17T17:38:59  <ogra> you need to declare interfaces
+2019-10-17T17:39:01  <alkisg> Eh, they can just ask me "give yourpassword"
+2019-10-17T17:39:10  <alkisg> I don't consider that part security
+2019-10-17T17:39:18  <ogra> these interfaces uderly certain rules and the sotre has checks for them when you upload
+2019-10-17T17:39:20  *** Durok <Durok!5f5ac874@ip5f5ac874.dynamic.kabel-deutschland.de> has quit IRC (Remote host closed the connection)
+2019-10-17T17:39:39  <ogra> so a camera app can not access your camera by default
+2019-10-17T17:39:42  <mwalters> So there's still some form of curated repository?
+2019-10-17T17:39:49  <alkisg> Sandboxing is fine for android, but I would never use android for my office desktop pc, I wouldn't trust it
+2019-10-17T17:39:58  <ogra> the user needs to permit this or you need permission from the sotre after an app review
+2019-10-17T17:39:58  <mwalters> (with "side loading" if you want to live dangerously?)
+2019-10-17T17:40:22  <ogra> alkisg, how many tabs does your browser have open currently
+2019-10-17T17:40:36  <alkisg> Currently 10, but I can easily reach 100
+2019-10-17T17:40:39  <ogra> how many of them are sites that use a password
+2019-10-17T17:41:01  <alkisg> When I go to google.com, I trust it with its password
+2019-10-17T17:41:12  <ogra> and how are you sure one site cant read the passwords from another site you have open ?
+2019-10-17T17:41:17  <alkisg> But I don't trust an app that can show me whatever picture it wants, and emulate a browser tab
+2019-10-17T17:41:29  <ogra> say you have 5 forums open and do homebanking :)
+2019-10-17T17:41:34  <alkisg> So that it would fool me into thinking I'm giving my password to google, when I'm giving it to the app
+2019-10-17T17:41:57  <mwalters> I think ogra is referencing tab sandboxing
+2019-10-17T17:42:08  <ogra> now all run inside the same password manager realm
+2019-10-17T17:42:09  <mwalters> (so js from one page can't access the memory of another)
+2019-10-17T17:42:18  <alkisg> Sandboxing is veeery different than "browser tabs"; browser tabs are clearly within my browser, not anywhere on my screen, emulating whatever
+2019-10-17T17:42:48  <alkisg> I do not use browser password manager for my bank accounts
+2019-10-17T17:42:49  <ogra> now imagine i make snap webapps apps for these forums ...
+2019-10-17T17:42:54  <alkisg> I don't trust them that much
+2019-10-17T17:43:27  <mwalters> It's more about limiting access to cookies/localstorage, the entire process/memory structure of the other tab
+2019-10-17T17:43:37  <ogra> the apps would be completely confined ... they cant read anything on your disk (except their own approved RW space) and cant access your browser password DB either
+2019-10-17T17:44:03  <alkisg> But they can show a picture of google, where I would type my google password, and they'd read it from my keyboard
+2019-10-17T17:44:18  <ogra> the point is that snaps can definitely not see anything of your system you dont allow explicitly
+2019-10-17T17:44:23  <mwalters> I think any application could potentially do that currently?
+2019-10-17T17:44:29  <alkisg> So you can do all the sandboxing you like, and the apps will still fool users
+2019-10-17T17:44:30  <ogra> no diskspace, no devices, etc etc
+2019-10-17T17:44:41  <mwalters> "You can't fix stupid" ;)
+2019-10-17T17:44:51  <ogra> sure, there is always a matter of trust
+2019-10-17T17:45:13  <ogra> but i.e. the firefox snap in the snap store is maintained by mozilla ...
+2019-10-17T17:45:19  <ogra> the VLC snap comes from VLC
+2019-10-17T17:45:25  <ogra> spotify from spotify
+2019-10-17T17:45:47  <ogra> and you might feel a lot safer with the skype snap than by having some deb that can read your whole homedir
+2019-10-17T17:46:15  * ogra goes afk for a moment
+2019-10-17T17:46:24  <alkisg> Sandboxing may come to .debs too
+2019-10-17T17:46:38  <alkisg> It's not coupled to the delivery format
+2019-10-17T17:50:47  <alkisg> OK fortunately the debian package is called "chromium", so Ubuntu's transitional "chromium-browser" package won't upgrade it to snaps on each new version
+2019-10-17T17:51:18  <alkisg> Now we just need a script that automates copying debian packages to PPAs :D
+2019-10-17T17:51:41  <highvoltage> what do you mean alkisg?
+2019-10-17T17:51:58  <highvoltage> launchpad PPAs or independent ones?
+2019-10-17T17:52:00  <ogra> well, sandboxing is only one minimal bit of snaps
+2019-10-17T17:52:03  <alkisg> launchpad PPAs
+2019-10-17T17:52:22  <ogra> transactional updates ... automatic rollback if the new app is buggy ...
+2019-10-17T17:52:36  <alkisg> highvoltage: my main concern is that I won't be able to have chromium on 20.04 AND have snapd purged,
+2019-10-17T17:52:45  <ogra> i.e. you have an "always on" gurarantee with snaps
+2019-10-17T17:53:10  <alkisg> so one way to do that, is to copy the one from debian, to the greek schools ppa
+2019-10-17T17:53:29  <ogra> biary delta upgrades ... (only get the changed bytes ... new snap is assmbled locally based on checksums and gpg keys)
+2019-10-17T17:53:35  <highvoltage> (ah I see what you mean now)
+2019-10-17T17:54:07  <ogra> ... snapshots of your data ...
+2019-10-17T17:54:16  <ogra> (versioned ones)
+2019-10-17T17:54:35  <alkisg> ogra, if snaps were a replacement proposal for .debs, then I'd consider it; but they're not, they're focused on apps outside of normal repositories, which i really don't want in my system...
+2019-10-17T17:55:05  <alkisg> I don't think snaps goals include "completely replacing debs" in the future, do they?
+2019-10-17T17:55:13  <ogra> they are the attempt to eable *everyone* to do very advanced packaging in less than a day
+2019-10-17T17:55:22  <ogra> nope
+2019-10-17T17:55:32  <alkisg> I would create a tool for that part, not a new packaging system
+2019-10-17T17:55:40  <ogra> debs are actually still the base and the default is to build against archive debs
+2019-10-17T17:55:58  <alkisg> Right, so I think all those nice things should go to .debs, not snaps
+2019-10-17T17:56:09  <alkisg> Even Turkey has delta updates for debs
+2019-10-17T17:56:13  <ogra> if snas replace something it is rather PPAs
+2019-10-17T17:56:21  <ogra> not debs
+2019-10-17T17:57:13  <ogra> alkisg, right, transactional updates are not anything you can ever see in debs though ...
+2019-10-17T17:57:22  <ogra> or rollbacks
+2019-10-17T17:57:43  <ogra> but yeah, deltas are nearly everywhere nowadays
+2019-10-17T17:58:37  <ogra> effectively more and more apps will vanish from the ubuntu archive though simply because they are painful to maintin there
+2019-10-17T17:58:58  <alkisg> It would be nice to keep the debian versions there though, not make them disappear
+2019-10-17T17:59:11  <alkisg> Like chromium-browser
+2019-10-17T17:59:14  <ogra> but debs wont die and the desktop/server/whatever will still be build out of debs
+2019-10-17T17:59:21  <alkisg> It's in universe, it's already clear that it doesn't get security audits
+2019-10-17T17:59:35  <highvoltage> lol nothing gets security audits
+2019-10-17T17:59:50  <ogra> highvoltage, every single upload gets security audits
+2019-10-17T18:00:13  <highvoltage> I don't believe that it gets a full security audit, sure changes maybe
+2019-10-17T18:00:20  <ogra> every sanp gets regular audits even after the fact and you get regular notifications about outdated libs from the store as a dev
+2019-10-17T18:00:27  <ogra> it does
+2019-10-17T18:00:31  <highvoltage> but I don't believe that you've done a full audit on the kernel or chromium or libreoffice or any of the large packages
+2019-10-17T18:00:42  <highvoltage> it would be a large multi-year project
+2019-10-17T18:00:58  <ogra> yes, snaps exist since 2014
+2019-10-17T18:01:08  <ogra> what do you think we worked on over these years ;)
+2019-10-17T18:01:34  <highvoltage> checking for outdated libs is not the same as a security audit
+2019-10-17T18:01:52  <ogra> indeed this is limited to known CVEs, but the security system from a dev POV is 100% better than in the deb world
+2019-10-17T18:02:23  *** adrianorg <adrianorg!~adrianorg@177.156.62.7> has joined #ltsp
+2019-10-17T18:02:27  <ogra> you dont get a full code audit indeed
+2019-10-17T18:02:49  <ogra> (since you can simply also just package binaries and not build them at all thats impossible)
+2019-10-17T18:03:00  <ogra> but thats why there is the confinement and interface system
+2019-10-17T18:04:56  *** adrianor1 <adrianor1!~adrianorg@177.18.172.1> has quit IRC (Ping timeout: 240 seconds)
+2019-10-17T18:08:34  <ogra> anyway, you dont have to like snaps ... several 100.000 downloads a day show that they are liked by enough people to survive even if not everyone uses them :)
+2019-10-17T18:09:01  *** ltsp_user50 <ltsp_user50!5b595a44@HSI-KBW-091-089-090-068.hsi2.kabelbw.de> has left #ltsp
+2019-10-17T19:55:55  *** section1 <section1!~section1@178.33.109.106> has quit IRC (Quit: Leaving)
+2019-10-17T19:56:22  *** mgariepy <mgariepy!~mgariepy@ubuntu/member/mgariepy> has quit IRC (Remote host closed the connection)
+2019-10-17T20:00:41  *** adrianor1 <adrianor1!~adrianorg@186.213.156.55> has joined #ltsp
+2019-10-17T20:02:17  *** adrianorg <adrianorg!~adrianorg@177.156.62.7> has quit IRC (Ping timeout: 240 seconds)
+2019-10-17T20:10:30  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c8ea:ac45:e32f:94d8> has quit IRC (Quit: No Ping reply in 180 seconds.)
+2019-10-17T20:10:48  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c8ea:ac45:e32f:94d8> has joined #ltsp
+2019-10-17T20:13:33  *** woernie_ <woernie_!~werner@p5B296156.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-17T20:34:03  *** adrianorg <adrianorg!~adrianorg@177.156.57.17> has joined #ltsp
+2019-10-17T20:35:41  *** adrianor1 <adrianor1!~adrianorg@186.213.156.55> has quit IRC (Ping timeout: 268 seconds)
+2019-10-17T20:38:15  <vagrantc> alkisg: will you be tagging a new version soon, or should i work from 19.09 ?
+2019-10-17T20:39:52  *** ltsp_user20 <ltsp_user20!5f5ac874@ip5f5ac874.dynamic.kabel-deutschland.de> has joined #ltsp
+2019-10-17T20:48:00  *** Faith <Faith!~Paty_@unaffiliated/faith> has quit IRC (Quit: Leaving)
+2019-10-17T20:52:10  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-17T20:52:25  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-17T20:59:18  <vagrantc> alkisg: oh, i remembered a trick to avoid the NEW queue ... we ship a new ltsp-server package and it Provides: ltsp :)
+2019-10-17T21:03:41  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-17T21:31:20  <vagrantc> manpages seem very brokened.
+2019-10-17T21:31:41  <vagrantc> empty ltsp-dnsmasq.8 and none of the others installed.
+2019-10-17T21:41:27  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c8ea:ac45:e32f:94d8> has quit IRC (Ping timeout: 246 seconds)
+2019-10-17T21:41:59  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has joined #ltsp
+2019-10-17T21:43:35  <vagrantc> seems to be trying to fall back to go-md2man
+2019-10-17T22:57:10  <vagrantc> apparently "
+2019-10-17T22:57:33  <vagrantc> in debian stable and newer, there's a new "ronn" package...
+2019-10-17T22:57:50  * vagrantc submitted a some pull requests
+2019-10-17T22:57:57  <vagrantc> probably should've split them up more appropriately...
+2019-10-17T23:22:08  *** bengoa <bengoa!~alberto@194.50.55.200> has quit IRC (Ping timeout: 265 seconds)
+2019-10-17T23:29:19  *** adrianor1 <adrianor1!~adrianorg@177.132.222.145> has joined #ltsp
+2019-10-17T23:29:56  *** adrianorg <adrianorg!~adrianorg@177.156.57.17> has quit IRC (Ping timeout: 240 seconds)
+2019-10-17T23:54:51  *** adrianor1 <adrianor1!~adrianorg@177.132.222.145> has quit IRC (Ping timeout: 240 seconds)
+2019-10-17T23:59:19  *** adrianorg <adrianorg!~adrianorg@177.18.173.66> has joined #ltsp

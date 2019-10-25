@@ -1,0 +1,36 @@
+2019-10-16T02:10:13  <alkisg> R4F4EL: that second problem sounds like a graphics driver problem. Sure, it's possible that your hardware fails with recent xorg and that you need to file a bug report so that it runs in newer Ubuntu versions; but this issue isn't related to LTSP
+2019-10-16T02:12:08  <alkisg> R4F4EL: one way to make sure, is to boot the client with live CDs, and see at which version it broke. E.g. "it worked on 16.04 and stopped working on 16.10". Then you could report that to ubuntu xorg, so that xorg developers might help you get it fixed
+2019-10-16T02:13:00  * alkisg wishes people wouldn't buy "thin client hardware"; in some cases it's worse than 20-year-old pentium 4's...
+2019-10-16T03:45:07  *** baskar <baskar!b752fa89@183.82.250.137> has joined #ltsp
+2019-10-16T04:37:30  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:5d46:b833:9808:1af1> has joined #ltsp
+2019-10-16T05:01:10  *** statler <statler!~Georg@p5B30EE2F.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-16T05:21:23  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-16T05:43:43  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-16T06:01:46  *** brick <brick!~ff@ppp031014172140.access.hol.gr> has joined #ltsp
+2019-10-16T07:45:03  *** baskar <baskar!b752fa89@183.82.250.137> has quit IRC (Remote host closed the connection)
+2019-10-16T08:12:59  *** statler <statler!~Georg@p5B30EE2F.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-16T08:27:30  *** brick <brick!~ff@ppp031014172140.access.hol.gr> has quit IRC (Remote host closed the connection)
+2019-10-16T08:37:01  *** enzo <enzo!8a2918e5@138.41.24.229> has joined #ltsp
+2019-10-16T08:44:49  *** statler <statler!~Georg@gwrz.lohn24.de> has joined #ltsp
+2019-10-16T10:44:58  *** bhi <bhi!5f5ac874@ip5f5ac874.dynamic.kabel-deutschland.de> has joined #ltsp
+2019-10-16T11:58:55  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-16T12:03:48  *** Faith <Faith!~Paty_@unaffiliated/faith> has joined #ltsp
+2019-10-16T12:20:51  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-16T12:23:17  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-16T13:29:39  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-16T13:52:45  *** llantones <llantones!d5c2b0f6@213.194.176.246> has joined #ltsp
+2019-10-16T13:53:43  <alkisg> llantones: here
+2019-10-16T13:53:47  <alkisg> Let's chat here in the channel
+2019-10-16T13:54:12  <alkisg> So, the easiest way for me to help you, is for you to share your screen with me
+2019-10-16T13:54:15  <alkisg> !vnc-edide
+2019-10-16T13:54:15  <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button
+2019-10-16T13:54:20  <alkisg> Do these ^ steps
+2019-10-16T13:55:17  <alkisg> (from your ltsp server)
+2019-10-16T13:56:43  <alkisg> llantones: ok now boot your client
+2019-10-16T13:56:57  <llantones> ok
+2019-10-16T13:58:32  *** gp <gp!~gp@96.71.93.13> has joined #ltsp
+2019-10-16T13:58:55  <gp> How do I rotate a monitor to portrait with the new lts.conf for ltsp19?
+2019-10-16T13:59:10  <alkisg> gp: you create a custom xorg.conf
+2019-10-16T13:59:25  <alkisg> Same as you would do it in normal installations
+2019-10-16T14:00:00  <gp> alkisg: ok ty
+2019-10-16T16:02:51  <ltsp> paste: To avoid channel flooding, please upload text longer than 3 lines to http://paste.debian.net. Don't forget to paste the resulting URL here.

@@ -1,0 +1,27 @@
+2019-10-05T00:19:23  *** Ark74 <Ark74!~Luis@177.238.145.140> has quit IRC (Ping timeout: 268 seconds)
+2019-10-05T00:30:24  *** Ark74 <Ark74!~Luis@177.238.145.140> has joined #ltsp
+2019-10-05T01:41:54  *** lucascastro <lucascastro!~lucascast@177-185-139-206.isotelco.net.br> has joined #ltsp
+2019-10-05T02:48:39  *** lucascastro <lucascastro!~lucascast@177-185-139-206.isotelco.net.br> has quit IRC (Remote host closed the connection)
+2019-10-05T06:01:27  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:345d:78d7:1c86:90b9> has joined #ltsp
+2019-10-05T06:13:18  *** adrianorg <adrianorg!~adrianorg@177.134.60.181> has joined #ltsp
+2019-10-05T06:14:46  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-05T06:15:56  *** adrianor1 <adrianor1!~adrianorg@177.156.58.71> has quit IRC (Ping timeout: 240 seconds)
+2019-10-05T07:13:59  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:345d:78d7:1c86:90b9> has quit IRC (Ping timeout: 276 seconds)
+2019-10-05T08:06:53  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-05T10:45:40  *** VibesYuth <VibesYuth!~Oval@pool-71-105-195-111.nycmny.fios.verizon.net> has joined #ltsp
+2019-10-05T11:04:34  *** VibesYuth <VibesYuth!~Oval@pool-71-105-195-111.nycmny.fios.verizon.net> has quit IRC (Quit: Leaving)
+2019-10-05T14:10:05  *** adrianor1 <adrianor1!~adrianorg@177.156.58.82> has joined #ltsp
+2019-10-05T14:11:53  *** adrianorg <adrianorg!~adrianorg@177.134.60.181> has quit IRC (Ping timeout: 268 seconds)
+2019-10-05T16:52:30  *** bluejaypop <bluejaypop!~bluejaypo@72.52.80.246> has quit IRC (Changing host)
+2019-10-05T16:52:30  *** bluejaypop <bluejaypop!~bluejaypo@unaffiliated/josefig> has joined #ltsp
+2019-10-05T19:29:05  *** adrianorg <adrianorg!~adrianorg@187.113.250.235> has joined #ltsp
+2019-10-05T19:31:45  *** adrianor1 <adrianor1!~adrianorg@177.156.58.82> has quit IRC (Ping timeout: 246 seconds)
+2019-10-05T20:02:33  *** adrianor1 <adrianor1!~adrianorg@187.113.248.114> has joined #ltsp
+2019-10-05T20:04:51  *** adrianorg <adrianorg!~adrianorg@187.113.250.235> has quit IRC (Ping timeout: 240 seconds)
+2019-10-05T21:32:36  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-05T21:32:56  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-05T21:36:33  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-05T22:01:32  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-05T22:02:00  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-05T23:46:54  *** jgee7 <jgee7!~jgee@190.159.118.121> has joined #ltsp
+2019-10-05T23:48:35  *** jgee <jgee!~jgee@190.159.118.121> has quit IRC (Ping timeout: 265 seconds)

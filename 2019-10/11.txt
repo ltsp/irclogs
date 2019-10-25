@@ -1,0 +1,193 @@
+2019-10-11T00:14:50  *** Durok <Durok!5bf8f629@dyndsl-091-248-246-041.ewe-ip-backbone.de> has quit IRC (Remote host closed the connection)
+2019-10-11T03:43:20  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:50c6:a746:ae53:7144> has joined #ltsp
+2019-10-11T05:01:14  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-11T05:28:29  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:50c6:a746:ae53:7144> has quit IRC (Ping timeout: 276 seconds)
+2019-10-11T05:42:09  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-11T05:47:15  *** bluejaypop6 <bluejaypop6!~bluejaypo@unaffiliated/josefig> has joined #ltsp
+2019-10-11T05:54:35  *** bluejaypop <bluejaypop!~bluejaypo@unaffiliated/josefig> has quit IRC (Quit: Ping timeout (120 seconds))
+2019-10-11T05:54:36  *** spaced0ut <spaced0ut!~spaced0ut@unaffiliated/spaced0ut> has quit IRC (Ping timeout: 245 seconds)
+2019-10-11T06:11:07  *** book` <book`!~book`@static.38.6.217.95.clients.your-server.de> has quit IRC (Ping timeout: 265 seconds)
+2019-10-11T06:11:31  *** book` <book`!~book`@static.38.6.217.95.clients.your-server.de> has joined #ltsp
+2019-10-11T06:16:58  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-11T07:08:03  *** kjackal <kjackal!~quassel@static062038141122.dsl.hol.gr> has joined #ltsp
+2019-10-11T07:18:05  *** georgeneophytou <georgeneophytou!d91b21d5@217.27.33.213> has joined #ltsp
+2019-10-11T07:19:27  <georgeneophytou> hello, I have done some further testing of LTSP, I have noticed that clients cannot run snap based packages, for example, the calculator.
+2019-10-11T07:20:27  <georgeneophytou> I believe it is something to do with mounted home directories, I have a similar system at the office where home directories are mounted over the network, snap packages are unable to run, now with LTSP, the same occurs
+2019-10-11T07:23:51  *** georgeneophytou7 <georgeneophytou7!d91b21d5@217.27.33.213> has joined #ltsp
+2019-10-11T07:24:01  <meo> I won't be surprised, since snap packages run in containers, which need special mount treatment
+2019-10-11T07:24:18  <meo> iirc the official guideline for ltsp19 is to uninstall snapd
+2019-10-11T07:24:36  <georgeneophytou7> so is the solution here to install the gnome packages instead through apt and remove snap packages completely?
+2019-10-11T07:24:44  <georgeneophytou7> ah right
+2019-10-11T07:25:16  <meo> I'm not sure if snap packages are impossible, just that afaik the proper support for them isn't implemented
+2019-10-11T07:25:19  *** georgeneophytou <georgeneophytou!d91b21d5@217.27.33.213> has quit IRC (Ping timeout: 260 seconds)
+2019-10-11T07:26:04  <georgeneophytou7> alright, is this something that is in the pipeline? alkisg?
+2019-10-11T07:26:31  <meo> ¯\_(ツ)_/¯
+2019-10-11T07:28:14  <georgeneophytou7> hehe, alright, well it's not really a big deal since a workaround is easy I suppose, just thought I'd put it here
+2019-10-11T07:33:46  <alkisg> georgeneophytou7: which ltsp version are you testing with? ltsp5 or ltsp19?
+2019-10-11T07:36:08  <georgeneophytou7> ltsp 19.09
+2019-10-11T07:36:23  <georgeneophytou7> with ubuntu 18.04.3
+2019-10-11T07:36:49  <alkisg> Strange, I don't know of any issues related to snap, except for the part where I recommend to remove it
+2019-10-11T07:37:05  <alkisg> I.e. if you blindly followed the installation instructions, snapd was removed, and you need to reinstall it
+2019-10-11T07:37:08  <alkisg> !install
+2019-10-11T07:37:08  <ltsp> install: To install LTSP19+: https://github.com/ltsp/ltsp/wiki/installation. To install LTSP5: http://wiki.ltsp.org/wiki/Installation/Ubuntu for Ubuntu, or http://wiki.ltsp.org/wiki/Installation for other distributions
+2019-10-11T07:37:19  <georgeneophytou7> so you are able to run snap packages on clients?
+2019-10-11T07:37:32  <georgeneophytou7> for me, when I open any snap package, it does nothing at all
+2019-10-11T07:38:13  <alkisg> I don't remember if I tested, but I don't know of any issues
+2019-10-11T07:38:33  <alkisg> snap list, or what the command is, does that show anything?
+2019-10-11T07:38:51  <georgeneophytou7> on client?
+2019-10-11T07:38:53  <alkisg> Yes
+2019-10-11T07:39:18  <georgeneophytou7> I will get back to you on that alkis, right now I am not at the office, it's okay if I DM you later?
+2019-10-11T07:41:11  <alkisg> georgeneophytou7: you may ping me here in the channel, just write "alkisg blah blah"...
+2019-10-11T07:42:29  <georgeneophytou7> alright :)
+2019-10-11T07:43:05  <meo> well TIL
+2019-10-11T07:43:16  <georgeneophytou7> ^^
+2019-10-11T07:43:51  <alkisg> georgeneophytou7: btw, are you greek?
+2019-10-11T07:44:18  <georgeneophytou7> i am a south african cypriot cocktail :D
+2019-10-11T07:44:30  <georgeneophytou7> I run a call center in paphos
+2019-10-11T07:44:34  <georgeneophytou7> 100% linux
+2019-10-11T07:44:38  <alkisg> Haha; OK I just asked because we have a dedicated channel for Greek schools support
+2019-10-11T07:44:55  <alkisg> But I guess chatting in Greek wouldn't be the easiest for you :D
+2019-10-11T07:45:16  <georgeneophytou7> no, sorry, my greek is not so good haha, but I understand a lot
+2019-10-11T07:45:25  <alkisg> Καλή συνέχεια :)
+2019-10-11T07:45:32  <georgeneophytou7> what is the channel
+2019-10-11T07:45:35  <georgeneophytou7> episies!
+2019-10-11T07:45:42  <alkisg>  /join #ts.sch.gr
+2019-10-11T07:45:48  <alkisg> But it's just for Greek teachers
+2019-10-11T08:00:56  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Quit: os_a)
+2019-10-11T08:01:31  *** statler_ <statler_!~Georg@gwrz3.lohn24.de> has joined #ltsp
+2019-10-11T08:02:43  *** kjackal <kjackal!~quassel@static062038141122.dsl.hol.gr> has quit IRC (Quit: No Ping reply in 180 seconds.)
+2019-10-11T08:04:10  *** kjackal <kjackal!~quassel@static062038141122.dsl.hol.gr> has joined #ltsp
+2019-10-11T08:37:16  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has joined #ltsp
+2019-10-11T08:37:37  *** georgeneophytou7 <georgeneophytou7!d91b21d5@217.27.33.213> has quit IRC (Remote host closed the connection)
+2019-10-11T08:37:46  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has quit IRC (Client Quit)
+2019-10-11T08:38:07  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has joined #ltsp
+2019-10-11T08:50:53  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-11T09:07:59  *** kjackal <kjackal!~quassel@static062038141122.dsl.hol.gr> has quit IRC (Ping timeout: 268 seconds)
+2019-10-11T09:09:20  *** kjackal <kjackal!~quassel@static062038141122.dsl.hol.gr> has joined #ltsp
+2019-10-11T09:14:25  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has joined #ltsp
+2019-10-11T09:26:14  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has quit IRC (Quit: Textual IRC Client: www.textualapp.com)
+2019-10-11T09:26:36  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has joined #ltsp
+2019-10-11T09:29:34  *** kjackal <kjackal!~quassel@static062038141122.dsl.hol.gr> has quit IRC (Ping timeout: 268 seconds)
+2019-10-11T09:43:46  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:50c6:a746:ae53:7144> has joined #ltsp
+2019-10-11T10:11:20  <georgeneophytou> alkisg, this is the output of snap list
+2019-10-11T10:11:21  <georgeneophytou> https://paste.ofcode.org/BNQBK4yFJ82AykRPx2q9DS
+2019-10-11T10:11:45  <georgeneophytou> so for example, it's not possible to open gnome-system-monitor or gnome-calculator on the client
+2019-10-11T10:15:18  *** georgeneophytou <georgeneophytou!~textual@217.27.33.213> has quit IRC (Quit: Textual IRC Client: www.textualapp.com)
+2019-10-11T10:15:43  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T10:30:41  <alkisg> georgeneophytou: can I see?
+2019-10-11T10:30:43  <alkisg> !vnc-dide
+2019-10-11T10:30:44  <ltsp> vnc-dide: To share your screen with me, run this: sudo apt-get --yes install x11vnc; x11vnc -connect srv1-dide.ioa.sch.gr - this is a reverse connection, it doesn't need port forwarding etc.
+2019-10-11T10:30:50  <alkisg> or this:
+2019-10-11T10:30:51  <alkisg> !vnc-edide
+2019-10-11T10:30:51  <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button
+2019-10-11T10:31:52  <georgeneophytou> okay one moment
+2019-10-11T10:51:02  <alkisg> georgeneophytou: have you only tested with the same user on the server and the client?
+2019-10-11T10:51:22  <georgeneophytou> I have tested with another user as well
+2019-10-11T10:51:29  <georgeneophytou> user "gneophytou"
+2019-10-11T10:51:44  <alkisg> In general logging in twice with the same user should be avoided; it can crash programs, cause corruption etc
+2019-10-11T10:51:58  <georgeneophytou> neo has admin privelage, gneophytou is standard user
+2019-10-11T10:52:13  <georgeneophytou> okay, shall I switch the user?
+2019-10-11T10:52:50  <alkisg> No, as the user home is in /media
+2019-10-11T10:52:54  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-11T10:53:06  <alkisg> Which will cause more issues, as this folder is reserved by udisks etc to mount sticks
+2019-10-11T10:53:35  <georgeneophytou> I moved the home there as I will attach raid devices for user's /home
+2019-10-11T10:53:40  <alkisg> OK this system seems messed up; let me try locally and see if snap works for me
+2019-10-11T10:53:48  <georgeneophytou> okay
+2019-10-11T10:53:51  <alkisg> I don't have snap currently, but I'll be able to test tomorrow
+2019-10-11T10:54:07  <georgeneophytou> i can move the user /home back
+2019-10-11T10:54:21  <georgeneophytou> just usermod -m -d /home/gneophytou gneophytou
+2019-10-11T10:54:31  <georgeneophytou> and then we try with that user
+2019-10-11T10:54:39  <alkisg> Sure, but there might be other changes
+2019-10-11T10:54:59  <georgeneophytou> everything else on the system is standard, not changes were made
+2019-10-11T10:55:53  <alkisg> You may use some other path for users, e.g. /home2, but better not /media, it's for another job,
+2019-10-11T10:56:20  <alkisg> also, I saw that /run/snapd is possibly in a local mount namespace or something, and I think that's to blame,
+2019-10-11T10:56:41  <alkisg> i.e. that snapd won't run properly over all overlayfs mount options; so it'll probably need more troubleshooting, if that's the issue
+2019-10-11T10:57:07  <alkisg> I'll give it a test later on
+2019-10-11T10:57:12  <alkisg> Let's disconnect for now
+2019-10-11T10:57:15  <georgeneophytou> okay I see, do you need anything more from me then?
+2019-10-11T10:57:20  <georgeneophytou> sure you can reconnect whenever you like
+2019-10-11T10:57:23  <alkisg> No, we can disconnect
+2019-10-11T10:57:29  <georgeneophytou> this machine is not in production right now
+2019-10-11T10:57:29  <alkisg> OK; lunch time; bye for now
+2019-10-11T10:57:43  <georgeneophytou> thanks, have a good one
+2019-10-11T11:06:06  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-11T11:13:22  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T11:39:23  <georgeneophytou> alkisg, looking at the client now with "standard" user "gneophytou", the snap packages are not even visible
+2019-10-11T11:53:34  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-11T11:56:24  *** Faith <Faith!~Paty_@unaffiliated/faith> has joined #ltsp
+2019-10-11T12:00:03  *** section1 <section1!~section1@178.33.109.106> has joined #ltsp
+2019-10-11T12:02:34  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T12:04:50  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T12:57:27  <alkisg> georgeneophytou: I completely avoid snaps, as I don't like their goals and implementation; but afaik, there are snaps for the system (sudo snap xxx) and for the user (snap xxx)
+2019-10-11T12:57:43  <alkisg> If you installed snaps for the user only, and you were trying those, maybe that was the issue
+2019-10-11T12:57:56  <alkisg> E.g. sudo snap install vs snap install
+2019-10-11T12:58:18  <georgeneophytou> these are the snaps that comes with ubuntu 18.04 as default, such as gnome-calculator
+2019-10-11T12:58:27  <georgeneophytou> but to be honest, I agree with you and I can live without snaps :)
+2019-10-11T12:58:29  <alkisg> OK
+2019-10-11T12:58:43  <alkisg> Yeah gnome-calculator should be available for all users
+2019-10-11T12:58:52  <georgeneophytou> I just wonder if this would become a limitation to LTSP later on for other people wishing to use this software
+2019-10-11T12:59:45  <alkisg> Nah
+2019-10-11T12:59:54  <alkisg> LTSP uses overlayfs like live cds
+2019-10-11T13:00:10  <alkisg> So it's just some mount option or something that snap doesn't like
+2019-10-11T13:00:51  <alkisg> I.e. it should be possible to run snaps; you just bumped into some unknown issue, not some limitation
+2019-10-11T13:01:09  <alkisg> I don't know if all users are affected or if it's just your installation
+2019-10-11T13:01:28  <alkisg> But even if all are affected, it should be solvable with a couple of lines of code changes
+2019-10-11T13:05:54  *** spaced0ut <spaced0ut!~spaced0ut@unaffiliated/spaced0ut> has joined #ltsp
+2019-10-11T13:27:02  <georgeneophytou> okay, what I can do is to make a reinstall and try it all again, perhaps I missed something or broke something
+2019-10-11T13:27:18  <alkisg> Or just wait, I'll test tomorrow :)
+2019-10-11T13:34:53  <georgeneophytou> alright alkis, thank you
+2019-10-11T13:44:10  *** nikoh77 <nikoh77!~nikoh77@host149-141-dynamic.59-82-r.retail.telecomitalia.it> has joined #ltsp
+2019-10-11T13:55:48  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Remote host closed the connection)
+2019-10-11T14:02:29  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-11T14:04:11  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T14:05:11  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has joined #ltsp
+2019-10-11T14:11:57  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Quit: My MacBook has gone to sleep. ZZZzzz…)
+2019-10-11T14:19:25  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T14:23:18  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has quit IRC (Client Quit)
+2019-10-11T14:26:14  *** georgeneophytou <georgeneophytou!~georgeneo@217.27.33.213> has joined #ltsp
+2019-10-11T14:30:29  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has joined #ltsp
+2019-10-11T14:30:35  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has left #ltsp
+2019-10-11T14:31:03  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has joined #ltsp
+2019-10-11T14:32:16  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has quit IRC (Ping timeout: 240 seconds)
+2019-10-11T14:32:55  <R4F4EL> Hello everyone, thank you in advance for your help in solving the problem I will describe below.
+2019-10-11T14:33:16  <R4F4EL> There are two thinclients (TC1 and TC2) and two LTSP servers (SRV1 and SRV2). Thinclient TC1 can boot PXE and log in to LTSP on servers SRV1 and SRV2, but thinclient TC2 can boot PXE and log in to LTSP only on server SRV1, failing to download the image via TFTP from SRV2. Below are the settings of TC1, TC2, SRV1 and SRV2.TC1 (64-bit):Model: HP
+2019-10-11T14:33:17  <R4F4EL> Compaq 6005 Pro Base Model SFF PC (AT495AV # 158)Specs: https://pastebin.com/xUYS50AfTC2 (32 bits):Model: HP Compaq t5545 Thin ClientSpecs: https://pastebin.com/rvW98iUcSRV1:ltsp-info output: https://pastebin.com/gj0g9VkqSRV2:ltsp-info output: https://pastebin.com/Z1aJQBzD
+2019-10-11T14:35:26  <R4F4EL> TC1 (64-bit):Model: HP Compaq 6005 Pro Base Model SFF PC (AT495AV # 158)Specs: https://pastebin.com/xUYS50Af
+2019-10-11T14:35:38  <R4F4EL> TC2 (32 bits):Model: HP Compaq t5545 Thin ClientSpecs: https://pastebin.com/rvW98iUc
+2019-10-11T14:35:49  <R4F4EL> SRV1:ltsp-info output: https://pastebin.com/gj0g9Vkq
+2019-10-11T14:36:02  <R4F4EL> SRV2:ltsp-info output: https://pastebin.com/Z1aJQBzD
+2019-10-11T14:40:08  *** Batmoine <Batmoine!~Batmoine@82-64-148-127.subs.proxad.net> has joined #ltsp
+2019-10-11T14:44:52  <R4F4EL> TC2 boot pxe freezes in this step: https://pasteboard.co/IBunYM5.jpg
+2019-10-11T14:48:34  *** Batmoine <Batmoine!~Batmoine@82-64-148-127.subs.proxad.net> has quit IRC ()
+2019-10-11T15:04:41  *** bluejaypop6 is now known as bluejaypop
+2019-10-11T15:05:36  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:50c6:a746:ae53:7144> has quit IRC (Remote host closed the connection)
+2019-10-11T15:05:59  <bluejaypop> hello good morning.
+2019-10-11T15:08:15  <bluejaypop> R4F4EL, acording to your picture I see your thin terminal doesn't start to boot by DHCP. Is it working the DHCP server on SRV2 ?
+2019-10-11T15:08:27  <bluejaypop> I mean, is it running ?
+2019-10-11T15:12:06  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c19f:868:6964:3b1f> has joined #ltsp
+2019-10-11T15:28:41  <R4F4EL> The DHCP server is running on another host. There is a pool that defines the TFTP server (SRV1 or SRV2).https://pastebin.com/RmFwHyKF
+2019-10-11T15:31:54  *** vsuojanen <vsuojanen!~vsuojanen@cable-hml-585686-205.dhcp.inet.fi> has quit IRC (Ping timeout: 252 seconds)
+2019-10-11T15:31:55  <R4F4EL> I simply change the "next-server" directive to point to the TFTP server I want, restart the DHCP service, and the client tries to download the image from the chosen next-server.
+2019-10-11T15:33:33  *** vsuojanen <vsuojanen!~vsuojanen@cable-hml-585686-205.dhcp.inet.fi> has joined #ltsp
+2019-10-11T15:38:11  *** vsuojanen <vsuojanen!~vsuojanen@cable-hml-585686-205.dhcp.inet.fi> has quit IRC (Ping timeout: 250 seconds)
+2019-10-11T15:49:55  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-11T15:55:51  *** nikoh77 <nikoh77!~nikoh77@host149-141-dynamic.59-82-r.retail.telecomitalia.it> has quit IRC (Quit: Leaving)
+2019-10-11T16:26:54  *** vsuojanen <vsuojanen!~vsuojanen@cable-hml-585686-205.dhcp.inet.fi> has joined #ltsp
+2019-10-11T16:28:24  *** statler_ <statler_!~Georg@gwrz3.lohn24.de> has quit IRC (Remote host closed the connection)
+2019-10-11T16:54:17  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has left #ltsp
+2019-10-11T17:00:18  *** vsuojanen <vsuojanen!~vsuojanen@cable-hml-585686-205.dhcp.inet.fi> has quit IRC (Ping timeout: 245 seconds)
+2019-10-11T17:07:24  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has joined #ltsp
+2019-10-11T18:01:20  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has left #ltsp
+2019-10-11T18:02:48  *** R4F4EL <R4F4EL!b1149819@177.20.152.25> has joined #ltsp
+2019-10-11T19:59:34  *** section1 <section1!~section1@178.33.109.106> has quit IRC (Quit: Leaving)
+2019-10-11T20:11:52  *** adrianor1 <adrianor1!~adrianorg@179.179.75.64> has joined #ltsp
+2019-10-11T20:14:51  *** adrianorg <adrianorg!~adrianorg@187.58.140.156> has quit IRC (Ping timeout: 240 seconds)
+2019-10-11T20:17:42  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c19f:868:6964:3b1f> has quit IRC (Ping timeout: 246 seconds)
+2019-10-11T20:18:16  *** nikoh77 <nikoh77!~nikoh77@host149-141-dynamic.59-82-r.retail.telecomitalia.it> has joined #ltsp
+2019-10-11T20:44:25  *** Faith <Faith!~Paty_@unaffiliated/faith> has quit IRC (Quit: Leaving)
+2019-10-11T21:01:46  *** gp <gp!~gp@96.71.93.13> has joined #ltsp
+2019-10-11T21:02:28  <gp> what is the equivalent of this in lts.conf ltsp19 from ltsp5? https://dpaste.de/Pw6K
+2019-10-11T21:04:28  <gp> if you dont want to open paste it is XRANDR_ROTATE_0=left / XRANDR_ORIENTATION_0=left for all screens ltsp used from lts conf
+2019-10-11T21:43:56  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-11T22:44:16  *** gp <gp!~gp@96.71.93.13> has quit IRC (Ping timeout: 240 seconds)
+2019-10-11T23:35:51  *** nikoh77 <nikoh77!~nikoh77@host149-141-dynamic.59-82-r.retail.telecomitalia.it> has quit IRC (Quit: Leaving)

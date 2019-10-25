@@ -1,0 +1,176 @@
+2019-10-01T04:09:36  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:38d1:e756:4252:d0c3> has joined #ltsp
+2019-10-01T04:26:05  *** quinox <quinox!~quinox@ghost.qtea.nl> has quit IRC (Quit: WeeChat 2.4)
+2019-10-01T04:30:37  *** quinox <quinox!~quinox@ghost.qtea.nl> has joined #ltsp
+2019-10-01T05:01:08  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-01T05:14:06  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-01T05:15:05  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-01T06:20:26  *** woernie <woernie!~werner@85.195.104.170> has joined #ltsp
+2019-10-01T06:22:50  *** woernie_ <woernie_!~werner@p578bb7b6.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-01T06:26:09  *** woernie <woernie!~werner@85.195.104.170> has quit IRC (Ping timeout: 265 seconds)
+2019-10-01T08:04:10  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Quit: os_a)
+2019-10-01T09:12:02  *** ltsp_user60 <ltsp_user60!8f32cb1f@WEGC203031.UNI-GRAZ.AT> has joined #ltsp
+2019-10-01T09:52:29  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-01T10:02:27  *** matusiak <matusiak!~matusiak@nat00.zb.lnet.pl> has joined #ltsp
+2019-10-01T10:30:08  *** statler <statler!~Georg@gwrz.lohn24.de> has joined #ltsp
+2019-10-01T10:55:13  *** ltsp_user60 <ltsp_user60!8f32cb1f@WEGC203031.UNI-GRAZ.AT> has quit IRC (Remote host closed the connection)
+2019-10-01T10:58:01  <matusiak> Hi everyone. Is there a way i LTSP to create many accounts and assign them to epoptes, for users (students)? At the beginning of school I want to create account for every student in my class. So I have my first class with 5-th graders and there is 16 of them. So I run a script? Or something and I quickly create 16 accounts with epoptes assign to them. Then I tell them to login with credentials like class6-01, class6-02 … , class6-16 and I show the
+2019-10-01T10:58:01  <matusiak> m how to change password.
+2019-10-01T10:58:11  <matusiak> You know about something like this? How do you create accounts for your users or students in LTPS?
+2019-10-01T10:59:26  <meo> matusiak: you should be trivially able to create accounts with standard tools
+2019-10-01T10:59:54  <meo> adduser(1) will do 99% of what you want
+2019-10-01T11:00:26  <meo> of course it's done with a shell script
+2019-10-01T11:01:03  <meo> your script would read a list of usernames and full names, call adduser for each one, then generate a password
+2019-10-01T11:02:17  <meo> oh I forgot there's also newusers(1)
+2019-10-01T11:02:26  <meo> https://www.2daygeek.com/linux-bulk-users-creation-useradd-newusers/
+2019-10-01T11:06:01  <matusiak> oh! that's grate. I think that is what I was looking for. As I can see from the link above I can also specify users in text file. Thanks for the link. I will try this methods.
+2019-10-01T11:06:34  <meo> you are welcome
+2019-10-01T11:06:45  <meo> dont forget you need to regenerate the images after you create the users
+2019-10-01T11:07:39  <matusiak> right, thx
+2019-10-01T11:33:08  *** gdi2k <gdi2k!~gdi2k@host86-185-211-13.range86-185.btcentralplus.com> has joined #ltsp
+2019-10-01T11:47:17  *** Faith <Faith!~Paty_@unaffiliated/faith> has joined #ltsp
+2019-10-01T12:32:49  *** section1 <section1!~section1@178.33.109.106> has joined #ltsp
+2019-10-01T12:34:01  *** John81 <John81!5c85306e@amontpellier-259-1-81-110.w92-133.abo.wanadoo.fr> has joined #ltsp
+2019-10-01T12:34:48  <John81> Hi all :)
+2019-10-01T12:35:24  <John81> Someone already encountered this error ?
+2019-10-01T12:35:33  <John81> on my client PC
+2019-10-01T12:36:01  <John81> "SQUASHFS error: Unable to read page, block xxxxxxx" ?
+2019-10-01T12:36:27  <John81> my LTSP server is Ubuntu 18.04
+2019-10-01T12:37:36  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:38d1:e756:4252:d0c3> has quit IRC (Remote host closed the connection)
+2019-10-01T12:43:41  *** gp <gp!~gp@96.71.93.13> has joined #ltsp
+2019-10-01T12:45:32  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:f974:2aaa:e1c2:14f2> has joined #ltsp
+2019-10-01T12:47:53  <alkisg> Hi John81
+2019-10-01T12:47:58  <alkisg> Are you using the Greek schools PPA?
+2019-10-01T12:48:05  <alkisg> It sounds like you hit the netplan issue...
+2019-10-01T12:49:02  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:503d:b044:5a1a:c63e> has joined #ltsp
+2019-10-01T12:51:37  <John81> alkisg no
+2019-10-01T12:52:06  <alkisg> John81: ok, then that's the problem, please add it to both your server and chroot, and update/rebuild image
+2019-10-01T12:52:12  <alkisg> !greek-schools-ppa
+2019-10-01T12:52:12  <ltsp> greek-schools-ppa: https://launchpad.net/~ts.sch.gr/+archive/ppa/ supports LTS Ubuntu releases with newer LTSP versions, bug fixes etc
+2019-10-01T12:52:30  <John81> ok, thx I'm try this
+2019-10-01T13:02:01  <John81> Same error
+2019-10-01T13:02:34  <John81> Squashfs error: Unable to read frangment cache entry [xxxxxx]
+2019-10-01T13:02:38  <John81> and
+2019-10-01T13:03:00  <John81> Failed to start login service (new error)
+2019-10-01T13:03:11  <John81> Failed to start Snappy Deamon
+2019-10-01T13:04:17  *** John44 <John44!5c85306e@amontpellier-259-1-81-110.w92-133.abo.wanadoo.fr> has joined #ltsp
+2019-10-01T13:04:59  <John44> maybe I would have to restart my server before regenerating the image?
+2019-10-01T13:05:08  *** John81 <John81!5c85306e@amontpellier-259-1-81-110.w92-133.abo.wanadoo.fr> has quit IRC (Remote host closed the connection)
+2019-10-01T13:06:18  <John44> Squashfs errors scroll slower
+2019-10-01T13:09:03  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has joined #ltsp
+2019-10-01T13:10:02  *** matusiak <matusiak!~matusiak@nat00.zb.lnet.pl> has quit IRC (Quit: Leaving)
+2019-10-01T13:10:24  <alkisg> John44: are you using a chroot, or chrootless?
+2019-10-01T13:11:53  <John44> chrootless
+2019-10-01T13:12:03  <John44> (ltsp image /)
+2019-10-01T13:12:13  <alkisg> OK, moment let me finish something...
+2019-10-01T13:12:23  <John44> no problem thx
+2019-10-01T13:18:39  <alkisg> !netplan
+2019-10-01T13:18:39  <ltsp> Error: "netplan" is not a valid command.
+2019-10-01T13:19:18  <alkisg> John44: can you try adding this in lts.conf? INIT_COMMAND_RM_NETPLAN="rm -f /lib/systemd/system-generators/netplan"
+2019-10-01T13:19:20  <alkisg> Then reboot client
+2019-10-01T13:19:33  <John44> ok
+2019-10-01T13:20:29  <John44> lts.conf in /var/lib/tftpboot/ltsp ?
+2019-10-01T13:20:34  <alkisg> Yes
+2019-10-01T13:20:38  <John44> ok
+2019-10-01T13:23:04  <John44> I need to regenerate the image or not need?
+2019-10-01T13:23:47  <John44> Failed to start Network Manager
+2019-10-01T13:24:05  <John44> Failed to start Failure handling of the snapd snap
+2019-10-01T13:25:00  <John44> and Squashfs error :)
+2019-10-01T13:31:05  *** woernie_ <woernie_!~werner@p578bb7b6.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-01T13:33:04  <alkisg> John44: can I see?
+2019-10-01T13:33:05  <alkisg> !vnc-dide
+2019-10-01T13:33:05  <ltsp> vnc-dide: To share your screen with me, run this: sudo apt-get --yes install x11vnc; x11vnc -connect srv1-dide.ioa.sch.gr - this is a reverse connection, it doesn't need port forwarding etc.
+2019-10-01T13:35:40  <alkisg> John44: ok, reboot client
+2019-10-01T13:35:51  <alkisg> You put it above [default] instead of under it
+2019-10-01T13:36:09  <John44> I saw that it was not in the right section, but I deleted the Netplan directory by hand by security before
+2019-10-01T13:36:19  <John44> I'm retry boot on client
+2019-10-01T13:37:44  <John44> Same error
+2019-10-01T13:37:56  <John44> Squashfs :-/
+2019-10-01T13:38:59  <alkisg> The netplan directory is regenerated automatically
+2019-10-01T13:39:15  <alkisg> This is a VM, isn't it?
+2019-10-01T13:39:19  <John44> yes
+2019-10-01T13:39:24  <alkisg> I can't install virtualbox and see a virtual client :/
+2019-10-01T13:40:00  <alkisg> Ouch you deleted that on the server?! :)
+2019-10-01T13:40:19  <John44> :-/  yes
+2019-10-01T13:41:28  <alkisg> Your image still has the old ltsp
+2019-10-01T13:41:48  <alkisg> You added the ppa but you didn't run ltsp-update-image
+2019-10-01T13:41:54  <John44> I'm not good sorry... i discover ltsp
+2019-10-01T13:42:28  <alkisg> np
+2019-10-01T13:45:52  <alkisg> John44: ok try again to reboot the client
+2019-10-01T13:46:00  <John44> ok
+2019-10-01T13:47:26  <John44> it works ... Well, I'm jumping off a bridge ...
+2019-10-01T13:47:40  <John44> thank you very much
+2019-10-01T13:51:29  <alkisg> np
+2019-10-01T13:52:32  <John44> cya ;)
+2019-10-01T13:52:39  *** John44 <John44!5c85306e@amontpellier-259-1-81-110.w92-133.abo.wanadoo.fr> has left #ltsp
+2019-10-01T14:01:27  <gp> alkisg: What was hanging me up yesterday is how to configure xinit.  I was able to get xterm working with simple case of startx but I cannot seem to call anything correctly with xinit.  Do you happen to know the analogous command for the freerdp screen script from LTSP5 for the systemd unit? exec xinit /usr/share/ltsp/xinitrc "$COMMAND" -- "$DISPLAY" "vt${TTY}" -nolisten tcp $X_ARGS >/dev/null
+2019-10-01T14:02:31  <alkisg> gp, no I haven't looked into it recently
+2019-10-01T14:02:43  <gp> alkisg: Ok. I will keep tinkering.
+2019-10-01T14:02:53  <alkisg> gp, are you sure it's best to use multiple vts instead of 1?
+2019-10-01T14:03:16  <alkisg> E.g. one user might be working on rdp on vt6, and another on lightdm on vt7? how does that work?
+2019-10-01T14:03:22  <alkisg> Why not use multiple session instead?
+2019-10-01T14:08:08  <gp> alkisg: I am not very familiar with this yet but I do not understand what you mean. I have been trying to set the SCREEN to work when a virtual console is swapped to with cntrl alt #.  Here are some of the tries but you can probably tell from the paste I am still trying to figure out what I am doing
+2019-10-01T14:08:09  <gp> http://paste.debian.net/1103491/
+2019-10-01T14:08:28  <gp> the startx is the only one that has worked so far.
+2019-10-01T14:09:34  <alkisg> gp, I mean this: what are you currently using SCREENs for?
+2019-10-01T14:09:41  <alkisg> Normal login, xfreerdp, ssh, right?
+2019-10-01T14:09:57  <alkisg> Do different people use those at the same time? Usually nope.
+2019-10-01T14:10:16  <alkisg> So why don't you let your users login as usual, and THEN run rdp or ssh or whatever?
+2019-10-01T14:10:39  <alkisg> If a user only needs to run xfreerdp, it can be the only program that a session runs
+2019-10-01T14:18:18  <gp> alkisg: Yes they use them simulatenously
+2019-10-01T14:18:41  <gp> alkisg: oops sorry no. not different users
+2019-10-01T14:18:43  <alkisg> gp, how? You have 2 keyboards?
+2019-10-01T14:18:54  <alkisg> Right, so if it's only one user, where do vts benefit?
+2019-10-01T14:19:12  <alkisg> Only the old ltsp used those
+2019-10-01T14:19:29  <alkisg> Normal installations don't really use them
+2019-10-01T14:19:31  <gp> alkisg: because you can run the linux desktop and the freerdp terminal at the same time. I was just trying to do it the same for motor skills
+2019-10-01T14:20:24  <gp> alkisg: you suggest using a different session for the display manager to log in to?
+2019-10-01T14:20:42  <alkisg> Yes, or just use 2 windows
+2019-10-01T14:20:50  <alkisg> One for rdp, and switch with the mouse like usual
+2019-10-01T14:22:13  <gp> alkisg: the freerdp connects as if you were physicaly plugged into the rdp computer. but that can be worked out differently.  the screens approach is a better fix but if it is more complicated perhaps I can get going like you suggest until I can work out the screens
+2019-10-01T14:22:36  <gp> alkisg: will try to put together a wiki entry for it once i do. I thought it was a popular option because it works so well. maybe not
+2019-10-01T14:24:51  <alkisg> gp, I implemented a lot of this stuff, and I ended up never using them
+2019-10-01T14:27:21  <alkisg> One can set up an xfreerdp session, that automatically connects full screen after lightdm
+2019-10-01T14:27:43  <alkisg> Or they can set up multiple windows with ssh, rdp, whatever, and handle them as real windows, instead of having to switch VTs,
+2019-10-01T14:27:54  <alkisg> plus, most of this stuff won't work on wayland anyway
+2019-10-01T14:28:14  <gp> alkisg: My personal use of the screens was for having linux booted as a programming terminal. and being able to hit control alt f5 to open up the freerdp so I could give tech support. But both vts kept current progress so i could swap without effecting the other
+2019-10-01T14:28:22  <gp> I will try the lightdm session
+2019-10-01T14:28:36  <gp> It was my understanding before that lightdm couldn't allow two concurrent sessions
+2019-10-01T14:28:48  <alkisg> That's where workspaces help
+2019-10-01T14:28:59  <alkisg> You have one workspace for programming, another for remote support etc
+2019-10-01T14:29:17  <alkisg> And they're all in the same wayland/xorg session, so clipboard works too, etc etc
+2019-10-01T14:29:48  <alkisg> If multiple VTs were something people needed a lot... systemd/xorg/wayland/DMs would make it easy for them
+2019-10-01T14:30:06  <alkisg> They don't; and ltsp ended up needing a lot of hacks and introducing a lot of race conditions
+2019-10-01T14:30:31  <alkisg> For example, in some debian versions people had to switch to vt1, then vt7, for lightdm to load, because of screen race conditions
+2019-10-01T14:30:46  <alkisg> lightdm does support multiple concurrent sessions though
+2019-10-01T14:30:51  <alkisg> But only for different users
+2019-10-01T14:31:00  <alkisg> It's the "login as ..." feature in the menu
+2019-10-01T14:32:22  <gp> alkisg: understood. I don't think it gives the same flexibility but if it is good enough and simpler without race conditions that is a win
+2019-10-01T14:32:31  <gp> will give that a try first
+2019-10-01T14:32:44  <alkisg> gp, you can also do this:
+2019-10-01T14:33:09  <alkisg> run xinit etc from inside your session, and launch a second xorg just for xfreerdp,
+2019-10-01T14:33:16  <alkisg> without relying on ltsp or anything else to do that
+2019-10-01T14:34:19  <alkisg> I.e. just make a `run-on-another-vt <program>` script
+2019-10-01T14:35:00  <gp> alkisg: I think that sounds like a straightfoward approach. Thanks =)
+2019-10-01T14:35:04  <alkisg> np
+2019-10-01T14:35:28  <alkisg> It'll probably won't work on wayland, but for a few years it should be ok
+2019-10-01T14:37:01  <gp> enough time to get comfortable with something else =)
+2019-10-01T14:39:18  <gp> alkisg: So here is one that I am confused about with removing screens cripts. Before, I could set the client to clear all screens and only allow "kiosk" for a public email checking terminal.  How would you do something like that with the new setup?
+2019-10-01T14:39:25  <gp> alkisg: Have to have a different image?
+2019-10-01T14:41:02  <alkisg> You'd autologin to a different session
+2019-10-01T14:41:24  <alkisg> E.g. /usr/share/xessions/kiosk.desktop
+2019-10-01T14:41:27  <alkisg> *xsessions
+2019-10-01T14:42:52  <gp> alkisg: thanks for the chat. take me a minute to change my mindset but the direction makes sense
+2019-10-01T15:23:13  *** gp <gp!~gp@96.71.93.13> has quit IRC (Ping timeout: 245 seconds)
+2019-10-01T16:20:50  *** statler <statler!~Georg@gwrz.lohn24.de> has quit IRC (Remote host closed the connection)
+2019-10-01T17:25:06  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:503d:b044:5a1a:c63e> has quit IRC (Ping timeout: 246 seconds)
+2019-10-01T17:38:07  *** woernie <woernie!~werner@p57A0EE73.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-01T17:51:32  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:503d:b044:5a1a:c63e> has joined #ltsp
+2019-10-01T18:03:43  *** adrianor1 <adrianor1!~adrianorg@177.18.96.39> has joined #ltsp
+2019-10-01T18:06:27  *** adrianorg <adrianorg!~adrianorg@177.18.177.141> has quit IRC (Ping timeout: 240 seconds)
+2019-10-01T18:48:35  *** gp <gp!~gp@96.71.93.13> has joined #ltsp
+2019-10-01T19:53:03  *** section1 <section1!~section1@178.33.109.106> has quit IRC (Quit: Leaving)
+2019-10-01T20:29:54  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:503d:b044:5a1a:c63e> has quit IRC (Ping timeout: 252 seconds)
+2019-10-01T20:32:26  *** woernie <woernie!~werner@p57A0EE73.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-01T20:36:00  *** Faith <Faith!~Paty_@unaffiliated/faith> has quit IRC (Quit: Leaving)
+2019-10-01T21:42:04  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-01T22:18:03  *** gp <gp!~gp@96.71.93.13> has quit IRC (Ping timeout: 240 seconds)

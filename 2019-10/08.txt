@@ -1,0 +1,186 @@
+2019-10-08T02:12:15  *** R4F4EL67 <R4F4EL67!b11493e7@177.20.147.231> has joined #ltsp
+2019-10-08T03:45:32  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c979:2a8c:7cdb:69d0> has joined #ltsp
+2019-10-08T03:57:29  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has quit IRC (Quit: leaving)
+2019-10-08T04:19:55  *** Ark74 <Ark74!~Luis@177.238.145.140> has quit IRC (Ping timeout: 265 seconds)
+2019-10-08T04:21:05  *** Ark74 <Ark74!~Luis@177.238.145.140> has joined #ltsp
+2019-10-08T04:54:53  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c979:2a8c:7cdb:69d0> has quit IRC (Remote host closed the connection)
+2019-10-08T05:01:10  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-08T05:46:49  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-08T05:57:47  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Quit: os_a)
+2019-10-08T06:25:46  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-08T06:31:47  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:91c7:e657:7b30:5573> has joined #ltsp
+2019-10-08T06:33:36  *** matusiak <matusiak!~matusiak@nat00.zb.lnet.pl> has joined #ltsp
+2019-10-08T06:38:57  *** alkisg <alkisg!~alkisg@ubuntu/member/alkisg> has quit IRC (Quit: Leaving.)
+2019-10-08T06:42:05  *** alkisg <alkisg!~alkisg@ubuntu/member/alkisg> has joined #ltsp
+2019-10-08T06:47:40  *** woernie <woernie!~werner@p578bb7b6.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-08T07:54:04  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-08T08:33:56  *** statler_ <statler_!~Georg@gwrz3.lohn24.de> has joined #ltsp
+2019-10-08T09:41:39  <alkisg> !blank
+2019-10-08T09:41:39  <ltsp> Error: "blank" is not a valid command.
+2019-10-08T09:44:17  *** luimon <luimon!d50057da@213.0.87.218> has joined #ltsp
+2019-10-08T09:44:21  <ogra> try putting it in quotes " "
+2019-10-08T09:44:23  <ogra> :P
+2019-10-08T09:44:31  *** luimon <luimon!d50057da@213.0.87.218> has quit IRC (Remote host closed the connection)
+2019-10-08T09:46:29  <alkisg> !learn blank as 😶
+2019-10-08T09:46:29  <ltsp> The operation succeeded.
+2019-10-08T09:46:32  <alkisg> !blank
+2019-10-08T09:46:33  <ltsp> blank: 😶
+2019-10-08T09:46:40  <alkisg> :P
+2019-10-08T09:47:47  <ogra> heh
+2019-10-08T10:05:39  *** Ark74 <Ark74!~Luis@177.238.145.140> has quit IRC (Ping timeout: 240 seconds)
+2019-10-08T10:09:27  *** Ark74 <Ark74!~Luis@177.238.145.140> has joined #ltsp
+2019-10-08T10:26:53  *** R4F4EL67 <R4F4EL67!b11493e7@177.20.147.231> has quit IRC (Remote host closed the connection)
+2019-10-08T12:06:45  *** section1 <section1!~section1@178.33.109.106> has joined #ltsp
+2019-10-08T12:10:51  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Remote host closed the connection)
+2019-10-08T12:17:25  *** John53 <John53!5c85b192@amontpellier-259-1-90-146.w92-133.abo.wanadoo.fr> has joined #ltsp
+2019-10-08T12:19:43  <John53> Hello everyone, you have brought me a very valuable help and I finally managed to get a functional classroom ... Nevertheless, I still have a little worry and I can not know where can come the problem: On client PCs, I can not access the internet. It does not even show me the network card, while the boot is done well. However, I have internet
+2019-10-08T12:19:43  <John53> access on the server.
+2019-10-08T12:21:09  <John53> Then when starting client PCs, the session manager does not display a user list, students are forced to enter their session name ... Is there a way to change it?
+2019-10-08T12:22:03  <John53> I specify that I am in chrootless mode and that I perform the installation of my server with a single network card (no dual NIC)
+2019-10-08T12:30:18  <John53> On client PCs, the network card says: wired unmanaged
+2019-10-08T12:44:17  <John53> @Alkisg: I think this comes from "netplan"
+2019-10-08T13:18:39  *** John53 <John53!5c85b192@amontpellier-259-1-90-146.w92-133.abo.wanadoo.fr> has quit IRC (Ping timeout: 260 seconds)
+2019-10-08T13:42:40  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has joined #ltsp
+2019-10-08T13:51:33  *** woernie <woernie!~werner@p578bb7b6.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-08T14:05:14  *** adrianorg <adrianorg!~adrianorg@177.18.96.215> has quit IRC (Ping timeout: 240 seconds)
+2019-10-08T14:34:30  *** adrianorg <adrianorg!~adrianorg@177.204.156.242.dynamic.adsl.gvt.net.br> has joined #ltsp
+2019-10-08T15:01:18  *** ltsp_user44 <ltsp_user44!c8203336@200.32.51.54> has joined #ltsp
+2019-10-08T15:05:12  <ltsp_user44> Hello everyone, someone speaks Spanish?
+2019-10-08T15:06:05  <alkisg> I haven't seen anyone here; you can use google translate though
+2019-10-08T15:09:59  <ltsp_user44> Ok, I have a question about chroot mode in the new version of ltsp
+2019-10-08T15:10:34  <ltsp_user44> no pude hacer que funcione
+2019-10-08T15:10:40  <ltsp_user44> I couldn't make it work
+2019-10-08T15:11:29  <alkisg> what was the issue?
+2019-10-08T15:17:02  <ltsp_user44> Basically clients do not start in chroot mode, modify ltsp.ipxe by adding parameters: cmdline_method root = / dev / nfs nfsroot = $ {srv}: / srv / ltsp / $ {img} boot = nfs
+2019-10-08T15:19:21  <ltsp_user44> we have an infrastructure of 200 ltsp users in version 5 in chroot mode, we want to upgrade to the version but we cannot maintain that characteristic
+2019-10-08T15:22:34  <alkisg> You don't have to edit ltsp.ipxe
+2019-10-08T15:22:38  <alkisg> It already supports chroots
+2019-10-08T15:25:31  <alkisg> I'll be available for remote support in 10 minutes if you want
+2019-10-08T15:25:33  <alkisg> Like this:
+2019-10-08T15:25:35  <alkisg> !vnc-edide
+2019-10-08T15:25:35  <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button
+2019-10-08T15:28:57  <alkisg> ltsp_user44: ok if you're still here, do this ^ to vnc to me; I'll leave in a few minutes though...
+2019-10-08T15:45:06  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:91c7:e657:7b30:5573> has quit IRC (Remote host closed the connection)
+2019-10-08T15:48:20  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c509:91a6:6c89:c631> has joined #ltsp
+2019-10-08T15:54:14  <ltsp_user44> hello I came back
+2019-10-08T15:59:46  <Ark74> ltsp_user44, are you using ltsp 19+?
+2019-10-08T15:59:59  <ltsp_user44> yes
+2019-10-08T16:00:58  <ltsp_user44> ltsp 19.09-1
+2019-10-08T16:01:08  <Ark74> parece que perdiste a alkisg para soporte remoto
+2019-10-08T16:01:12  <ltsp_user44> 201909270719-ubuntu18
+2019-10-08T16:01:24  <ltsp_user44> Hola
+2019-10-08T16:01:27  <Ark74> hey
+2019-10-08T16:03:04  <Ark74> contactalo, creo que él es el más indicado para una tarea de este tipo
+2019-10-08T16:03:20  <Ark74> (si es que está disponible, claro)
+2019-10-08T16:03:53  <ltsp_user44> si aca espero
+2019-10-08T16:04:01  <Ark74> puedo preguntar que tipo de clientes usas?
+2019-10-08T16:04:02  <ltsp_user44> eres usuario de ltsp?
+2019-10-08T16:04:48  <Ark74> estoy retomandolo después de un largo rato, usamos ltsp 5.3 en ese entonces
+2019-10-08T16:05:26  <ltsp_user44> claro nosotros tambien
+2019-10-08T16:05:26  <Ark74> y precisamente la idea es retomar ahora con ltsp 19+
+2019-10-08T16:05:40  <ltsp_user44> tenemos aproximadamente 200 usuarios con ubuntu 16
+2019-10-08T16:05:48  <ltsp_user44> ubuntu mate 16
+2019-10-08T16:05:57  <ltsp_user44> si nosotros ttambien
+2019-10-08T16:07:58  <Ark74> leiste este mensaje? <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button
+2019-10-08T16:08:24  <ltsp_user44> si si
+2019-10-08T16:09:13  <Ark74> Ok
+2019-10-08T16:10:00  <ltsp_user44> nostros tenemos todos clientes livianos
+2019-10-08T16:10:21  <ltsp_user44> somos una entidad gubernamental
+2019-10-08T16:11:11  <Ark74> ok, entonces todo va sobre red
+2019-10-08T16:12:50  <Ark74> si no es indiscreción, que tipo de cliente ligero usan?
+2019-10-08T16:13:44  <Ark74> nuestra implementación era mas modesta, un aula de medios para una escuela, no mas de 15 clientes
+2019-10-08T16:13:56  <ltsp_user44> usamos dell optiplex 180
+2019-10-08T16:14:16  <ltsp_user44> servidores dell
+2019-10-08T16:14:27  <ltsp_user44> en ambiente virtualizado
+2019-10-08T16:14:58  <ltsp_user44> vmware esxi 6.7
+2019-10-08T16:15:28  <ltsp_user44> lo que nos esta ocurriendo es que los procesos se estan ejecutando localmente ne las terminales
+2019-10-08T16:15:52  <ltsp_user44> no asi en el servidor
+2019-10-08T16:15:56  <Ark74> usaste localapps?
+2019-10-08T16:16:45  <ltsp_user44> en el ambiente de produccion con version 5 no lo usamos debido a la poca memoria de las clientes
+2019-10-08T16:17:04  <ltsp_user44> la idea es usar en version nueva
+2019-10-08T16:20:28  <Ark74> como? entonces no están arrancando correctamente y pasan a iniciar desde el HDD?
+2019-10-08T16:31:45  * alkisg is back too, but doesn't speak spanish :)
+2019-10-08T16:32:20  <alkisg> ltsp_user44: are you here?
+2019-10-08T16:37:57  <alkisg> ltsp_user44: I tried to read what you said using google translate; I think you're looking for thin client mode, where the applications run on the server
+2019-10-08T16:38:36  <alkisg> In LTSP19, this is only supported by xfreerdp, for example: https://github.com/ltsp/ltsp/issues/39#issuecomment-539150708
+2019-10-08T16:43:11  <alkisg> If you come here, tell us your client specifications, e.g. Pentium 4 with 1 GB RAM?
+2019-10-08T16:43:56  <ltsp_user44> hello
+2019-10-08T16:45:10  <ltsp_user44> yes intel atom with 1gb
+2019-10-08T16:45:19  <alkisg> OK then these run better as fat clients
+2019-10-08T16:45:32  <alkisg> You don't need thin client mode
+2019-10-08T16:47:24  <ltsp_user44> ok, but is it possible that the processes run on the server not on the client?
+2019-10-08T16:48:24  <alkisg> In LTSP19, this is only supported by xfreerdp, for example: https://github.com/ltsp/ltsp/issues/39#issuecomment-539150708
+2019-10-08T16:48:36  <ltsp_user44> because they have recently acquired new servers with 250 gb of ram to function as an ltsp server
+2019-10-08T16:48:38  <ltsp_user44> oka
+2019-10-08T16:49:28  <alkisg> This was a very bad idea :)
+2019-10-08T16:49:34  <alkisg> They should have bought clients instead
+2019-10-08T16:52:00  <ltsp_user44> jaja yes I agree
+2019-10-08T16:54:05  <alkisg> Remote xorg is getting deprecated, people move to wayland etc
+2019-10-08T16:54:14  <alkisg> Thin clients aren't "in" anymore
+2019-10-08T16:55:45  <ltsp_user44> ok
+2019-10-08T16:56:18  <ltsp_user44> we have a boss to convince
+2019-10-08T16:57:30  <ltsp_user44> we have another query
+2019-10-08T16:57:39  <Ark74> alkisg, So, are thin clients dying with LTSP5?
+2019-10-08T16:59:05  <alkisg> Ark74: yes
+2019-10-08T16:59:14  <alkisg> Remote xorg is dying upstream
+2019-10-08T16:59:22  <alkisg> x2go won't work on wayland
+2019-10-08T16:59:29  <alkisg> So I think rdp and pipewire will live
+2019-10-08T17:04:14  <Ark74> ... interesting
+2019-10-08T17:04:25  <Ark74> that's a game changer
+2019-10-08T17:05:58  <alkisg> So soon thin clients will probably mean "netbooted clients with a remote desktop program"
+2019-10-08T17:06:24  <alkisg> The "xorg can run over the network" idea was deprecated like 10 years ago; it was on life support...
+2019-10-08T17:06:41  <Ark74> hehehe
+2019-10-08T17:07:24  <Ark74> well, time to get 2019 sink in I guess
+2019-10-08T17:08:37  <alkisg> xfreerdp support, kiosk mode, guest sessions etc can be implemented in ltsp19 with a few lines in ltsp.conf
+2019-10-08T17:08:54  <alkisg> And I guess someone could also easily implement thin clients with X -query
+2019-10-08T17:09:24  <alkisg> But I won't include code for localapps, remoteapps, ltspfs etc; xfreerdp and x2go already support remote file systems, printing, local devices etc
+2019-10-08T17:10:20  <Ark74> have a lot of reading a testing to do now that I'm back to ltsp 19+
+2019-10-08T17:10:45  <Ark74> a lot happened since 5.3
+2019-10-08T17:11:27  <alkisg> Ark74: the best thing to do is to follow the installation guide to the letter, so that you get things up and running in 10 minutes after os installation,
+2019-10-08T17:11:34  <alkisg> and *then* start customizing to your needs
+2019-10-08T17:12:58  <Ark74> o/
+2019-10-08T17:13:30  <Ark74> what popular client will be a good one?
+2019-10-08T17:14:06  <Ark74> I saw that RPi4 had some nice upgrades, but maybe it is still under powered
+2019-10-08T17:14:43  <alkisg> !cheap-client
+2019-10-08T17:14:43  <ltsp> cheap-client: https://www.gearbest.com/tv-box-c_11262/?attr=2081-1279
+2019-10-08T17:15:11  <alkisg> Rpi4 is indeed underpowered, but it's a LOT better than rpi2/3
+2019-10-08T17:15:18  <alkisg> It's similar to atoms
+2019-10-08T17:15:47  <alkisg> *first generation atoms, not recent ones
+2019-10-08T17:16:40  <alkisg> But in general if you want desktop systems, buy desktop systems. LTSP helps you in maintaining one installation for any number of diskless clients; it doesn't lighten the hardwrae needs
+2019-10-08T17:16:42  <Ark74> the nice thing about RPis is the "set sd and ready 2 go" workflow
+2019-10-08T17:17:07  <alkisg> That's actually the very sad part
+2019-10-08T17:17:11  <alkisg> As they don't support netbooting properly
+2019-10-08T17:17:20  <alkisg> So you have to update things in the SD card on each kernel update
+2019-10-08T17:17:29  <alkisg> While all the normal things like PCs, support netbooting from their BIOS/UEFI
+2019-10-08T17:17:34  <alkisg> And don't need local media updates
+2019-10-08T17:18:27  <alkisg> In 5-10 years, I think rpi6 or 7 will finally get netbooting right, and have a semi decent cpu, to be used as desktop
+2019-10-08T17:18:35  <alkisg> But for now... I'd stay away from them :)
+2019-10-08T17:19:18  <alkisg> (typing these from an rpi; but only used for remote desktop, not as desktop :))
+2019-10-08T17:19:30  <Ark74> Ok xDD
+2019-10-08T17:19:39  <Ark74> is gPXE still around?
+2019-10-08T17:19:46  <alkisg> It's now called ipxe
+2019-10-08T17:19:53  <Ark74> ohh!
+2019-10-08T17:19:56  <alkisg> LTSP19 uses ipxe instead of syslinux
+2019-10-08T17:20:07  <alkisg> To be able to support uefi, show menus etc
+2019-10-08T17:20:41  <Ark74> I have a lot to catch up then xD
+2019-10-08T17:21:12  <Ark74> thanks for the comments and suggestions!
+2019-10-08T17:21:27  <alkisg> np
+2019-10-08T17:32:06  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c509:91a6:6c89:c631> has quit IRC (Ping timeout: 252 seconds)
+2019-10-08T17:32:32  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has joined #ltsp
+2019-10-08T17:54:04  *** R4F4EL <R4F4EL!b1149819@177.20.152.25> has quit IRC (Remote host closed the connection)
+2019-10-08T17:55:02  *** R4F4EL <R4F4EL!b1149819@177.20.152.25> has joined #ltsp
+2019-10-08T17:55:39  *** R4F4EL <R4F4EL!b1149819@177.20.152.25> has left #ltsp
+2019-10-08T17:59:55  *** R4F4EL <R4F4EL!b1149819@177.20.152.25> has joined #ltsp
+2019-10-08T18:10:17  *** statler_ <statler_!~Georg@gwrz3.lohn24.de> has quit IRC (Remote host closed the connection)
+2019-10-08T18:26:43  <meo> R4F4EL: I think you may want to change your password
+2019-10-08T18:29:38  <R4F4EL> I've done this. Thank you for the warning.
+2019-10-08T18:30:08  <meo> also may I recommend diceware
+2019-10-08T18:30:19  <mwalters> one of those days ;)
+2019-10-08T18:32:27  *** matusiak <matusiak!~matusiak@nat00.zb.lnet.pl> has quit IRC (Quit: Leaving)
+2019-10-08T18:35:26  <R4F4EL> thanks for the recommendation, meo
+2019-10-08T18:45:13  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-08T19:03:03  *** ltsp_user44 <ltsp_user44!c8203336@200.32.51.54> has quit IRC (Ping timeout: 260 seconds)
+2019-10-08T19:57:08  *** section1 <section1!~section1@178.33.109.106> has quit IRC (Quit: Leaving)
+2019-10-08T20:15:50  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has quit IRC (Ping timeout: 276 seconds)
+2019-10-08T20:24:01  *** Faith <Faith!~Paty_@unaffiliated/faith> has quit IRC (Quit: Leaving)
+2019-10-08T21:59:46  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)

@@ -1,0 +1,20 @@
+2019-10-25T05:20:10  *** ltsp <ltsp!bot@ltsp.org> has joined #ltsp
+2019-10-25T05:20:20  <alkisg> !bot are you alive now? :)
+2019-10-25T05:20:20  <ltsp> Error: "bot" is not a valid command.
+2019-10-25T05:34:47  <alkisg> Let's see if restoring the ltsp5 wiki to a two-years-old backup will work... before we dis-bundle it :P
+2019-10-25T05:35:27  <alkisg> !learn html-to-markdown as HTML to markdown converter: https://euangoddard.github.io/clipboard2markdown/
+2019-10-25T05:35:28  <ltsp> The operation succeeded.
+2019-10-25T05:40:40  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Quit: os_a)
+2019-10-25T05:54:35  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-25T06:04:47  *** woernie <woernie!~werner@p57A0E783.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-25T06:05:03  <os_a> Hi! Does LTSP work with UEFI terminals?
+2019-10-25T06:05:20  <alkisg> os_a: the new ltsp, yes
+2019-10-25T06:05:23  <alkisg> The old one, no
+2019-10-25T06:05:24  <alkisg> !install
+2019-10-25T06:05:24  <ltsp> install: To install LTSP19+: https://github.com/ltsp/ltsp/wiki/installation. To install LTSP5: http://wiki.ltsp.org/wiki/Installation/Ubuntu for Ubuntu, or http://wiki.ltsp.org/wiki/Installation for other distributions
+2019-10-25T06:05:40  <alkisg> !forget install
+2019-10-25T06:05:40  <ltsp> The operation succeeded.
+2019-10-25T06:06:10  <alkisg> !learn install as To install LTSP19+: https://ltsp.github.io/docs/installation. To install LTSP5: http://wiki.ltsp.org/wiki/Installation/Ubuntu for Ubuntu, or http://wiki.ltsp.org/wiki/Installation for other distributions
+2019-10-25T06:06:10  <ltsp> The operation succeeded.
+2019-10-25T06:07:09  <os_a> ok, merci!
+2019-10-25T06:10:10  *** ltsp <ltsp!bot@ltsp.org> has joined #ltsp

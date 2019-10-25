@@ -1,0 +1,102 @@
+2019-10-07T03:19:56  *** uumas[m]1 <uumas[m]1!uumaslyseo@gateway/shell/matrix.org/x-lgmpvyullauqgtin> has joined #ltsp
+2019-10-07T03:24:14  *** uumas is now known as uumas1
+2019-10-07T03:24:23  *** uumas[m]1 is now known as uumas
+2019-10-07T04:50:23  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has quit IRC (Quit: leaving)
+2019-10-07T05:01:09  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-07T06:04:48  <alkisg> !netplan
+2019-10-07T06:04:48  <ltsp> Error: "netplan" is not a valid command.
+2019-10-07T06:13:43  *** gdi2k <gdi2k!~gdi2k@host86-189-221-117.range86-189.btcentralplus.com> has joined #ltsp
+2019-10-07T06:17:03  <alkisg> !learn netplan as `To work around https://bugs.launchpad.net/netplan/+bug/1763608/comments/47, either update to a new LTSP version, or put this in lts.conf: INIT_COMMAND_RM_NETPLAN="rm -rf /lib/systemd/system-generators/netplan /run/netplan"`
+2019-10-07T06:17:03  <ltsp> The operation succeeded.
+2019-10-07T06:17:08  <alkisg> !netplan
+2019-10-07T06:17:08  <ltsp> netplan: To work around https://bugs.launchpad.net/netplan/+bug/1763608/comments/47, either update to a new LTSP version, or put this in lts.conf: INIT_COMMAND_RM_NETPLAN="rm -rf /lib/systemd/system-generators/netplan /run/netplan"
+2019-10-07T06:23:16  *** vafiadisp <vafiadisp!5e423938@ppp-94-66-57-56.home.otenet.gr> has joined #ltsp
+2019-10-07T06:28:39  *** matusiak <matusiak!~matusiak@nat00.zb.lnet.pl> has joined #ltsp
+2019-10-07T07:08:32  *** ZAJDAN <ZAJDAN!~zdenek@77.48.149.75> has quit IRC (Quit: Konversation terminated!)
+2019-10-07T07:21:07  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-07T08:10:15  <meo> netplan is an overcomplicated PITA
+2019-10-07T08:14:30  <alkisg> I think it's trying to solve a problem that doesn't exist :/
+2019-10-07T08:21:21  <meo> it's canonical's cloud integration nonsense
+2019-10-07T08:21:24  <meo> pisses me off
+2019-10-07T08:21:55  <meo> instead of old good interfaces(5) now it's a DSL on top of yaml with "renderers" and plugin infrastructure and whatever
+2019-10-07T08:21:58  <alkisg> They could just have a small script do things with systemd-networkd without bothering all desktop users about it
+2019-10-07T08:22:16  <meo> dont get me started on systemd..
+2019-10-07T08:22:21  <meo> not a fan.
+2019-10-07T08:22:22  <alkisg> OK interfaces(5) was to be deprecated anyway, but systemd and network-manager are good enough
+2019-10-07T08:22:50  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-07T08:31:13  <uumas1> interfaces (ifupdown?) isn't deprecated on debian (stable at least)
+2019-10-07T08:34:52  <alkisg> uumas1, https://wiki.debian.org/NetToolsDeprecation => ifupdown
+2019-10-07T09:02:21  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-07T10:13:16  *** vafiadisp <vafiadisp!5e423938@ppp-94-66-57-56.home.otenet.gr> has quit IRC (Remote host closed the connection)
+2019-10-07T10:16:17  *** fiesh <fiesh!~fiesh@hq.wsoptics.de> has quit IRC (Ping timeout: 245 seconds)
+2019-10-07T10:46:09  *** fiesh <fiesh!~fiesh@hq.wsoptics.de> has joined #ltsp
+2019-10-07T11:30:22  *** ltsp_user38 <ltsp_user38!b114982f@177.20.152.47> has left #ltsp
+2019-10-07T11:31:16  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has joined #ltsp
+2019-10-07T11:42:54  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Quit: os_a)
+2019-10-07T12:07:02  *** gdi2k <gdi2k!~gdi2k@host86-189-221-117.range86-189.btcentralplus.com> has quit IRC (Quit: Leaving)
+2019-10-07T12:37:18  *** section1 <section1!~section1@178.33.109.106> has joined #ltsp
+2019-10-07T12:55:54  *** Faith <Faith!~Paty_@unaffiliated/faith> has joined #ltsp
+2019-10-07T12:58:19  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has quit IRC (Read error: Connection reset by peer)
+2019-10-07T12:58:37  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c979:2a8c:7cdb:69d0> has joined #ltsp
+2019-10-07T13:43:58  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has quit IRC (Ping timeout: 268 seconds)
+2019-10-07T13:44:44  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has joined #ltsp
+2019-10-07T13:54:37  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has left #ltsp
+2019-10-07T13:58:27  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has joined #ltsp
+2019-10-07T14:19:18  *** uumas1 <uumas1!uumasmatri@gateway/shell/matrix.org/x-xeyfnufoxumaxkje> has quit IRC (Read error: Connection reset by peer)
+2019-10-07T14:19:18  *** uumas <uumas!uumaslyseo@gateway/shell/matrix.org/x-lgmpvyullauqgtin> has quit IRC (Read error: Connection reset by peer)
+2019-10-07T14:19:18  *** alexxtasi[m] <alexxtasi[m]!alexxtasim@gateway/shell/matrix.org/x-qbpbtpbxpueimgio> has quit IRC (Read error: Connection reset by peer)
+2019-10-07T14:23:47  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has quit IRC (Ping timeout: 276 seconds)
+2019-10-07T14:29:58  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has joined #ltsp
+2019-10-07T15:22:11  *** vsuojanen <vsuojanen!~vsuojanen@cable-hml-585686-205.dhcp.inet.fi> has joined #ltsp
+2019-10-07T15:46:42  *** adrianor1 <adrianor1!~adrianorg@187.113.244.150> has joined #ltsp
+2019-10-07T15:48:56  *** adrianorg <adrianorg!~adrianorg@189.114.156.56> has quit IRC (Ping timeout: 276 seconds)
+2019-10-07T15:50:18  *** matusiak <matusiak!~matusiak@nat00.zb.lnet.pl> has quit IRC (Quit: Leaving)
+2019-10-07T16:14:28  *** adrianor1 <adrianor1!~adrianorg@187.113.244.150> has quit IRC (Ping timeout: 245 seconds)
+2019-10-07T16:16:47  *** adrianorg <adrianorg!~adrianorg@187.115.107.135> has joined #ltsp
+2019-10-07T16:21:51  *** adrianorg <adrianorg!~adrianorg@187.115.107.135> has quit IRC (Ping timeout: 246 seconds)
+2019-10-07T16:32:23  *** alexxtasi[m] <alexxtasi[m]!alexxtasim@gateway/shell/matrix.org/x-motjlwcqydoizqan> has joined #ltsp
+2019-10-07T16:37:36  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c979:2a8c:7cdb:69d0> has quit IRC (Ping timeout: 246 seconds)
+2019-10-07T16:46:46  *** adrianorg <adrianorg!~adrianorg@177.132.221.47> has joined #ltsp
+2019-10-07T17:06:09  *** uumas_1 <uumas_1!uumasmatri@gateway/shell/matrix.org/x-soxmixpdtztzqnen> has joined #ltsp
+2019-10-07T17:06:17  *** uumas <uumas!uumaslyseo@gateway/shell/matrix.org/x-pkoqcepmghdqvukg> has joined #ltsp
+2019-10-07T17:17:41  *** adrianor1 <adrianor1!~adrianorg@191.32.97.229> has joined #ltsp
+2019-10-07T17:18:38  *** adrianorg <adrianorg!~adrianorg@177.132.221.47> has quit IRC (Ping timeout: 245 seconds)
+2019-10-07T17:41:26  *** R4F4EL43 <R4F4EL43!b1149819@177.20.152.25> has joined #ltsp
+2019-10-07T17:44:12  *** R4F4EL <R4F4EL!b114982f@177.20.152.47> has left #ltsp
+2019-10-07T17:44:50  *** R4F4EL43 <R4F4EL43!b1149819@177.20.152.25> has left #ltsp
+2019-10-07T17:45:42  *** R4F4EL59 <R4F4EL59!b1149819@177.20.152.25> has joined #ltsp
+2019-10-07T17:46:46  *** R4F4EL59 <R4F4EL59!b1149819@177.20.152.25> has left #ltsp
+2019-10-07T17:47:43  *** adrianor1 <adrianor1!~adrianorg@191.32.97.229> has quit IRC (Ping timeout: 265 seconds)
+2019-10-07T17:47:46  *** adrianorg <adrianorg!~adrianorg@179.177.208.222.dynamic.adsl.gvt.net.br> has joined #ltsp
+2019-10-07T17:49:04  *** R4F4EL51 <R4F4EL51!b1149819@177.20.152.25> has joined #ltsp
+2019-10-07T17:51:03  *** R4F4EL51 is now known as R4F4EL
+2019-10-07T18:00:17  *** adrianorg <adrianorg!~adrianorg@179.177.208.222.dynamic.adsl.gvt.net.br> has quit IRC (Ping timeout: 265 seconds)
+2019-10-07T18:07:11  <alkisg> R4F4EL: come here in the channel
+2019-10-07T18:07:13  <alkisg> Do this:
+2019-10-07T18:07:14  <alkisg> !vnc-edide
+2019-10-07T18:07:14  <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button
+2019-10-07T18:07:55  <alkisg> Folow these ^ instructions to share your server screen with me
+2019-10-07T18:17:46  *** adrianorg <adrianorg!~adrianorg@177.18.96.215> has joined #ltsp
+2019-10-07T19:30:21  <alkisg> R4F4EL: here
+2019-10-07T19:30:25  <alkisg> Your card is 01:05.0 VGA compatible controller [0300]: Advanced Micro Devices, Inc. [AMD/ATI] RS880 [Radeon HD 4200] [1002:9710]
+2019-10-07T19:31:01  <alkisg> To make it work in Debian, I think it needs: sudo apt install firmware-adm-graphics; sudo ltsp image /
+2019-10-07T19:32:56  <R4F4EL> Ok, I will install, update the image, test again and post the result. Thanks for the help, Alkis!
+2019-10-07T19:33:03  <alkisg> You're welcome
+2019-10-07T19:33:15  <alkisg> R4F4EL: you'd better ask in #debian to make sure
+2019-10-07T19:33:21  <alkisg> It's not an LTSP issue, it's a debian issue
+2019-10-07T19:35:31  <R4F4EL> Entendi. Novamente, obrigado pela ajuda!
+2019-10-07T19:35:39  <R4F4EL> Understand. Again, thanks for the help!
+2019-10-07T19:44:00  *** epoptes_user3 <epoptes_user3!b0588fa1@176.88.143.161> has joined #ltsp
+2019-10-07T20:09:39  *** section1 <section1!~section1@178.33.109.106> has quit IRC (Remote host closed the connection)
+2019-10-07T20:13:36  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c979:2a8c:7cdb:69d0> has joined #ltsp
+2019-10-07T20:18:48  <R4F4EL> Alkis, just to confirm that the proposed solution worked. Thank you for your help!
+2019-10-07T20:21:46  <R4F4EL> But apparently the terminal is not playing audio. I will investigate why and if necessary I will contact you again.
+2019-10-07T20:23:37  <R4F4EL> Sorry, audio playback is a terminal hardware problem.
+2019-10-07T20:25:11  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c979:2a8c:7cdb:69d0> has quit IRC (Ping timeout: 276 seconds)
+2019-10-07T21:19:32  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-07T21:48:40  *** jgee7 <jgee7!~jgee@190.159.118.121> has quit IRC (Quit: The Lounge - https://thelounge.chat)
+2019-10-07T21:56:22  *** jgee7 <jgee7!~jgee@190.159.118.121> has joined #ltsp
+2019-10-07T22:06:23  *** ltsp_user46 <ltsp_user46!b114982f@177.20.152.47> has joined #ltsp
+2019-10-07T22:06:29  *** ltsp_user46 <ltsp_user46!b114982f@177.20.152.47> has left #ltsp
+2019-10-07T22:24:29  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has joined #ltsp
+2019-10-07T23:23:38  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has quit IRC (Ping timeout: 245 seconds)

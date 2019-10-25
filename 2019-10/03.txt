@@ -1,0 +1,183 @@
+2019-10-03T02:17:00  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has quit IRC (Quit: leaving)
+2019-10-03T03:52:09  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:503d:b044:5a1a:c63e> has joined #ltsp
+2019-10-03T05:01:10  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-03T05:22:09  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-03T05:54:37  *** adrianorg <adrianorg!~adrianorg@179.179.75.120> has quit IRC (Ping timeout: 245 seconds)
+2019-10-03T05:54:58  *** adrianorg <adrianorg!~adrianorg@179.179.75.120> has joined #ltsp
+2019-10-03T06:42:17  <alkisg> !learn uvnc-alkisg as To share your *Windows* screen with me over VNC, download and run this: http://alkisg.mysch.gr/temp/vnc-alkisg.exe
+2019-10-03T06:42:17  <ltsp> The operation succeeded.
+2019-10-03T06:50:47  *** woernie <woernie!~werner@pD9E8BB12.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-03T07:36:57  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-03T09:10:36  *** gdi2k <gdi2k!~gdi2k@host86-185-211-13.range86-185.btcentralplus.com> has quit IRC (Ping timeout: 240 seconds)
+2019-10-03T09:15:42  *** GodFather <GodFather!~rcc@d53-64-7-141.nap.wideopenwest.com> has joined #ltsp
+2019-10-03T09:49:38  <alkisg> !uvnc-dide
+2019-10-03T09:49:38  <ltsp> uvnc-dide: To share your *Windows* screen with me over VNC, download and run this: http://alkisg.mysch.gr/downloads/uvnc-dide.exe
+2019-10-03T10:00:09  <highvoltage> hey alkisg, I'm trying out ltsp19 today and got https://paste.debian.net/1103955 - any idea what could cause that?
+2019-10-03T10:00:25  <alkisg> Hey Jonathan, let me see
+2019-10-03T10:00:45  <alkisg> Unit dnsmasq.service not found ?
+2019-10-03T10:01:46  <alkisg> highvoltage: the first part about resolve1.service is a problem in debian dependencies, somehow in minimal installations they manage to install systemd-resolve without its dependencies,
+2019-10-03T10:01:57  <alkisg> ltsp then displays that warning, and it continues, so no problem there,
+2019-10-03T10:02:13  <alkisg> but the second part about dnsmasq.service missing sounds... like dnsmasq is missing?
+2019-10-03T10:02:18  <alkisg> Did you install it?
+2019-10-03T10:02:59  <alkisg> highvoltage: I was about to leave for a school; I can stay for a few minutes if you're working on this atm
+2019-10-03T10:03:56  <alkisg> Note the ltsp server installation command now requires dnsmasq: apt install ltsp dnsmasq nfs-kernel-server openssh-server squashfs-tools ethtool net-tools epoptes
+2019-10-03T10:04:01  <alkisg> (epoptes is optional though)
+2019-10-03T10:04:33  <alkisg> After ltsp5 is removed, we might re-introduce an ltsp-server package, just for the dependencies...
+2019-10-03T10:04:50  <alkisg> OK I'll go to school and come to irc from there in half an hour or so
+2019-10-03T10:05:00  <highvoltage> alkisg: ah I typed that from the wiki into a terminal where I didn't have copy and paste, let me check...
+2019-10-03T10:05:51  <highvoltage> oops, yes didn't have dnsmasq installed, that was a but dumb of me :)
+2019-10-03T10:06:00  <highvoltage> ok thanks
+2019-10-03T10:06:04  <alkisg> np
+2019-10-03T10:06:07  <alkisg> bb in 30' or so
+2019-10-03T10:34:37  *** woernie <woernie!~werner@pD9E8BB12.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-03T11:25:38  <highvoltage> for some reason ipxe loads the kernel but then encounters an Exec format error, I checked the file in the tftproot directory and it seems like a normal enough kernel image
+2019-10-03T11:28:37  <alkisg> highvoltage: uefi or bios? secure boot enabled or not? 64 bit i presume, right?
+2019-10-03T11:29:54  <highvoltage> in this case, virtualbox with efi, no SB
+2019-10-03T11:30:23  <alkisg> highvoltage: maybe 32bit vm instead of 64bit vm?
+2019-10-03T11:30:30  <alkisg> But... with efi... hmm
+2019-10-03T11:30:34  <highvoltage> ot
+2019-10-03T11:30:36  <highvoltage> s a 64bit vm
+2019-10-03T11:31:02  <alkisg> Try overriding snponly.efi with ipxe.efi
+2019-10-03T11:31:08  <alkisg> *overwriting
+2019-10-03T11:31:12  <alkisg> boot.ipxe.org/ipxe.efi
+2019-10-03T11:32:19  <highvoltage> oh my bad, the server is efi the client is just legacy
+2019-10-03T11:45:04  <highvoltage> ah the ipxe image that got downloaded doesn't seem to have bzip. odd.
+2019-10-03T11:49:34  *** Faith <Faith!~Paty_@2001:12d0:2080::231:49> has joined #ltsp
+2019-10-03T11:49:34  *** Faith <Faith!~Paty_@unaffiliated/faith> has joined #ltsp
+2019-10-03T11:50:43  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Quit: os_a)
+2019-10-03T12:05:13  <highvoltage> ah I think I figured it out, for some reason I thought I was using an ipxe blob that I downloaded, but it was using the limited built-in virtualbox ipxe
+2019-10-03T12:16:05  *** section1 <section1!~section1@178.33.109.106> has joined #ltsp
+2019-10-03T12:35:21  <highvoltage> not sure what I did wrong or right but somehow it's working now, I'll run through this again some later point, ltsp19 looks nice so far thanks :)
+2019-10-03T13:06:13  *** kjackal_v2 <kjackal_v2!~quassel@2a02:587:3107:2e00:9151:efb:acd3:140a> has joined #ltsp
+2019-10-03T13:09:23  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:503d:b044:5a1a:c63e> has quit IRC (Ping timeout: 276 seconds)
+2019-10-03T13:45:05  *** ltsp_user54 <ltsp_user54!8f32cb1f@WEGC203031.UNI-GRAZ.AT> has joined #ltsp
+2019-10-03T13:55:20  *** ltsp_user96_rafa <ltsp_user96_rafa!bb3de524@187.61.229.36> has joined #ltsp
+2019-10-03T14:00:09  *** ltsp_user54 <ltsp_user54!8f32cb1f@WEGC203031.UNI-GRAZ.AT> has quit IRC (Remote host closed the connection)
+2019-10-03T14:03:42  <alkisg> highvoltage: yeah vbox internal ipxe has a couple of issues; it even hangs on reboots but works on first boot; so usually I prefer to boot it from "ipxe.iso" instead
+2019-10-03T14:14:29  <highvoltage> alkisg: ah good tip, thanks
+2019-10-03T14:15:13  <alkisg> I think the intel stack doesn't have this issues, but it requires that the vbox extensions are installed
+2019-10-03T15:08:50  <alkisg> !discuss
+2019-10-03T15:08:50  <ltsp> I do not know about 'discuss', but I do know about these similar topics: 'ltsp-discuss'
+2019-10-03T15:08:53  <alkisg> !ltsp-discuss
+2019-10-03T15:08:53  <ltsp> ltsp-discuss: at https://lists.sourceforge.net/lists/listinfo/ltsp-discuss
+2019-10-03T15:12:56  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-03T15:14:04  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-03T15:15:20  *** eu^ppp-2-87-122- <eu^ppp-2-87-122-!02577a11@ppp-2-87-122-17.home.otenet.gr> has joined #ltsp
+2019-10-03T15:15:59  *** eu^ppp-2-87-122- is now known as gkolomvos
+2019-10-03T15:18:00  <gkolomvos> ΚΑλησπέρα
+2019-10-03T15:18:48  *** gkolomvos <gkolomvos!02577a11@ppp-2-87-122-17.home.otenet.gr> has left #ltsp
+2019-10-03T15:19:25  *** gkolomvos <gkolomvos!02577a11@ppp-2-87-122-17.home.otenet.gr> has joined #ltsp
+2019-10-03T15:20:06  *** gkolomvos <gkolomvos!02577a11@ppp-2-87-122-17.home.otenet.gr> has quit IRC (Remote host closed the connection)
+2019-10-03T15:23:37  <bluejaypop> good morning, how is the easy way to exec an application once the X are ready in the thin terminals? they are Fat terminals, btw.
+2019-10-03T16:30:30  <alkisg> bluejaypop: what application? Before or after login?
+2019-10-03T16:37:55  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-03T16:38:09  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-03T16:42:09  <adrianorg> hi, btw, how can I autostart firefox after login, for instance?
+2019-10-03T16:46:18  <alkisg> adrianorg: /etc/xdg/autostart
+2019-10-03T16:46:47  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has joined #ltsp
+2019-10-03T16:57:10  <alkisg> vagrantc: I was thinking, since ltsp19 is rather mature, and ubuntu 20.04 won't support i386 anyway (so not much point for thin client setups), maybe it would be best if ltsp19 was in testing at the time when ubuntu pulls; and not have ltsp5 by default in 20.04 as was the initial though
+2019-10-03T16:57:56  <vagrantc> alkisg: i haven't scraped together enough time to test it ... but sure!
+2019-10-03T16:58:28  <alkisg> So, no point in preparing migration paths etc, with package renames; it should be a lot simpler now
+2019-10-03T16:58:56  <vagrantc> i didn't think we were doing any package renames?
+2019-10-03T16:59:12  <vagrantc> or rather, there would just be one new package, "ltsp"
+2019-10-03T16:59:12  <alkisg> We talked about having the possibility of co-installation of ltsp5 and ltsp19
+2019-10-03T16:59:19  <vagrantc> right
+2019-10-03T17:00:21  <alkisg> I think it involved some renames, but anyway it doesn't matter now :)
+2019-10-03T17:00:54  <vagrantc> there was a source package rename that would have been needed
+2019-10-03T17:01:21  <vagrantc> crazy as it sounds, it *might* actually be simpler in Debian to have them coinstallable than not...
+2019-10-03T17:01:46  <vagrantc> there was also some debate over weather ltsp-client would need to exist?
+2019-10-03T17:02:13  <bluejaypop> alkisg, i want them to auto open pidgin.
+2019-10-03T17:02:25  <alkisg> bluejaypop: you put that in /etc/xdg/autostart
+2019-10-03T17:02:50  <alkisg> vagrantc: no, ltsp is ltsp-client; maybe we'll need ltsp-server in the future, if we can define it well enough...
+2019-10-03T17:05:56  <vagrantc> well "ltsp" included both server-like things and client-like things, no?
+2019-10-03T17:09:50  <alkisg> The code, yes, but not any services
+2019-10-03T17:10:07  <vagrantc> sure
+2019-10-03T17:10:24  <vagrantc> the the "ltsp" command includes options to enable the services and such, no?
+2019-10-03T17:11:07  <vagrantc> so at best, an "ltsp-server" package would simply be a bunch of package recommends ... which could just as easily go into the client package
+2019-10-03T17:11:16  <vagrantc> er, the "ltsp" package
+2019-10-03T17:11:39  <vagrantc> though it's entirely possible i'm missing something, having not actually tried any of this :)
+2019-10-03T17:12:41  <alkisg> https://github.com/ltsp/ltsp/wiki/installation
+2019-10-03T17:12:48  <alkisg> apt install ltsp dnsmasq nfs-kernel-server openssh-server squashfs-tools ethtool net-tools epoptes
+2019-10-03T17:12:54  <alkisg> This is th eserver
+2019-10-03T17:13:43  <vagrantc> right
+2019-10-03T17:13:58  <vagrantc> the "ltsp" package should at least have a "suggests" for all of those, then
+2019-10-03T17:14:08  <vagrantc> if recommends is too strong
+2019-10-03T17:22:25  <alkisg> It does
+2019-10-03T17:32:49  <alkisg> So, the question is, do we want an ltsp-server package? One may avoid dnsmasq, nfs, ssh (ldap/nfs4), squashfs (direct vm boot)...
+2019-10-03T17:33:05  <alkisg> I.e. if people are ok with just pasting that line, I prefer it that way
+2019-10-03T17:47:06  <vagrantc> mixed feelings on the issue ... seems silly to maintain a meta-package just for that
+2019-10-03T17:47:12  <vagrantc> but then again, maybe not...
+2019-10-03T17:47:37  <vagrantc> a meta-package with only recommends is rather weak
+2019-10-03T17:48:05  <vagrantc> if there was a "default configuration" that pulled in depends, that would make more sense
+2019-10-03T17:48:16  <vagrantc> but ... *shrug*
+2019-10-03T17:48:26  *** Ark74 <Ark74!~Luis@177.238.145.140> has quit IRC (Read error: Connection reset by peer)
+2019-10-03T17:48:41  <vagrantc> i do like the idea of a single package that just installs the default configuration, i guess.
+2019-10-03T17:48:59  <vagrantc> e.g. for the ltsp-pnp style install
+2019-10-03T17:52:33  <alkisg> I think if we end up using an ltsp-server package, it should also contain the /usr/share/ltsp/server dir, and depend on ltsp (client)
+2019-10-03T17:52:57  <alkisg> It shouldn't be just a metapackage then
+2019-10-03T17:53:18  <alkisg> And of course it'd use recommends, not depends, for dnsmasq etc, so that people could use isc/nbd etc etc instead
+2019-10-03T18:34:05  *** ltsp_user36 <ltsp_user36!5db9c8f2@93.185.200.242> has joined #ltsp
+2019-10-03T18:44:13  <vagrantc> alkisg: would it make sense then to call it ltsp-server and ltsp-client? then we wouldn't have to go through NEW processing :)
+2019-10-03T18:48:40  <alkisg> I guess we could; although we'd lose the "apt install ltsp" simplicity...
+2019-10-03T18:49:29  <vagrantc> heh. i could add a "provides" ltsp on one of the packages :)
+2019-10-03T18:50:47  <alkisg> vagrantc: would we have to care about migration path then?
+2019-10-03T18:50:58  <alkisg> I.e. someone has ltsp-server in buster, upgrades and... chaos?
+2019-10-03T18:51:45  <alkisg> The different name, plain ltsp, does suggest something needs to be done by the sysadmin, and it's not a simple upgrade...
+2019-10-03T18:52:01  <alkisg> E.g. tftp and /opt/ltsp path changes, config changes, server package changes...
+2019-10-03T18:52:04  <vagrantc> true, true
+2019-10-03T18:52:15  <vagrantc> yes, we should probably do it the proper way.
+2019-10-03T18:52:29  <vagrantc> but then same for adding an ltsp-server package.
+2019-10-03T18:52:47  <vagrantc> unless we name it something else...
+2019-10-03T18:52:52  <alkisg> OK let's keep it plain ltsp for a bit then; we might add an ltsp-server for bullseye+1
+2019-10-03T18:53:01  <vagrantc> clever workaround :)
+2019-10-03T18:53:10  <alkisg> Until then, we'll also have a clearer vision of all the possible ltsp-server-* variants
+2019-10-03T18:53:11  <vagrantc> will still need to go through NEW ... but yay
+2019-10-03T18:54:04  <vagrantc> it also makes it possible to have them installed concurrently
+2019-10-03T18:54:12  <vagrantc> for people who really want to expirment with that
+2019-10-03T18:54:23  <alkisg> True; e.g. someone may use a ppa and ltsp5 even in ubuntu 20.04
+2019-10-03T19:12:37  <vagrantc> i did want to get one last ltsp5 upload in before the transition ... but it'll probably sit in NEW long enough for that to happen
+2019-10-03T19:12:56  <vagrantc> and ldm ... don't think there's anything else pending
+2019-10-03T19:13:31  <vagrantc> part of me wants to maintain them in parallel ... but realistically i don't have time
+2019-10-03T19:34:33  *** statler <statler!~Georg@p54897245.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-03T19:40:34  <bluejaypop> alkisg, you if I add the .desktop file into /etc/xdg/autostart and later re-generate the image. And that's all.
+2019-10-03T19:42:20  <alkisg> bluejaypop: yes
+2019-10-03T19:44:54  <bluejaypop> thanks, i will try.
+2019-10-03T19:45:33  <alkisg> bluejaypop: INIT_COMMAND_RUN_THIS="ln -s /usr/share/applications/app.desktop /etc/xdg/autostart"
+2019-10-03T19:45:41  <alkisg> should also work without regenerating image
+2019-10-03T19:46:02  <bluejaypop> ah I see.
+2019-10-03T19:46:09  <bluejaypop> thanks! good one.
+2019-10-03T19:58:25  *** denispyr <denispyr!4d3127be@77.49.39.190.dsl.dyn.forthnet.gr> has joined #ltsp
+2019-10-03T20:00:26  *** section1 <section1!~section1@178.33.109.106> has quit IRC (Quit: Leaving)
+2019-10-03T20:01:07  <adrianorg> alkisg: thanks! Both ways (INIT_COMMAND_ and OVERLAY_DIR) worked successfully on my tests. I've found the INIT_COMMAND_ easier to use.
+2019-10-03T20:01:56  <alkisg> Great
+2019-10-03T20:03:13  <denispyr> O alkisg στο http://alkisg.mysch.gr/steki/index.php?topic=4359.msg46954#msg46954 φτιάχνει ένα σκριπτάκι για ααζικςς εκτελέσεςς εντολών. όταν το τρέχω μου βγάζει σε κάθε εκτέλεση που λογκάρει σφαλμα "Δεν υπάρχει τέτοιο αρχείο ή
+2019-10-03T20:03:13  <denispyr> κατάλογος"
+2019-10-03T20:04:29  <denispyr> Αν τρέξω την εντολή εξ απο το σκριπτάκι - όλα καλά
+2019-10-03T20:07:39  *** ltsp_user96_rafa <ltsp_user96_rafa!bb3de524@187.61.229.36> has quit IRC (Remote host closed the connection)
+2019-10-03T20:07:59  *** rafael <rafael!bb3de524@187.61.229.36> has joined #ltsp
+2019-10-03T20:08:23  *** rafael is now known as Guest9774
+2019-10-03T20:08:56  <alkisg> denispyr: this is the english channel
+2019-10-03T20:09:03  <alkisg> To join the greek channel, type: /join #ts.sch.gr
+2019-10-03T20:10:02  <bluejaypop> alkisg, thank you it works! :)
+2019-10-03T20:10:12  <alkisg> np
+2019-10-03T20:10:49  <bluejaypop> btw, i wanted to tell you a retail company is using some ltsp based solution to their cashier terminals. very cleaver, 0 license for windows, etc.
+2019-10-03T20:11:05  <bluejaypop> their system works with ncurses and I was like oh my god, this is good :)
+2019-10-03T20:11:06  <alkisg> As long as it's gpl-complatible ;)
+2019-10-03T20:11:15  <bluejaypop> yes
+2019-10-03T20:11:24  <adrianorg> Is there a counterpart to this feature, to run a command on logout? So I can remove files from the users' home directories, for instance?
+2019-10-03T20:12:51  *** Guest9774 <Guest9774!bb3de524@187.61.229.36> has quit IRC (Ping timeout: 260 seconds)
+2019-10-03T20:19:26  *** denispyr <denispyr!4d3127be@77.49.39.190.dsl.dyn.forthnet.gr> has quit IRC (Remote host closed the connection)
+2019-10-03T20:31:01  *** Faith <Faith!~Paty_@unaffiliated/faith> has quit IRC (Quit: Leaving)
+2019-10-03T20:35:16  <bluejaypop> adrianorg, i don't know :(
+2019-10-03T20:35:26  <bluejaypop> maybe on the shutdown process
+2019-10-03T20:37:14  *** kjackal_v2 <kjackal_v2!~quassel@2a02:587:3107:2e00:9151:efb:acd3:140a> has quit IRC (Ping timeout: 276 seconds)
+2019-10-03T20:50:35  <vagrantc> adrianorg: you really want to also check before login, otherwise if the logout never happens (client crash, desktop crash, etc.) then you're relying on the wrong hook
+2019-10-03T20:50:52  <vagrantc> adrianorg: at which point, you may as well make sure it works on login and forget about logout
+2019-10-03T21:15:08  *** Ark74 <Ark74!~Luis@177.238.145.140> has joined #ltsp
+2019-10-03T21:38:26  *** rafael <rafael!b11493e7@177.20.147.231> has joined #ltsp
+2019-10-03T21:38:50  *** rafael is now known as Guest88892
+2019-10-03T21:50:16  *** gamble <gamble!aaf703e2@170.247.3.226> has joined #ltsp
+2019-10-03T21:50:43  <gamble> HOLA
+2019-10-03T21:51:23  *** gamble <gamble!aaf703e2@170.247.3.226> has quit IRC (Remote host closed the connection)
+2019-10-03T22:10:46  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-03T22:57:36  <adrianorg> vagrantc: understood. Thanks!

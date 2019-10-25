@@ -1,0 +1,25 @@
+2019-10-12T00:42:24  *** gp <gp!~gp@c-73-82-177-102.hsd1.ga.comcast.net> has joined #ltsp
+2019-10-12T04:07:42  <alkisg> gp, for any cases other than the trivials, you're supposed to create an /etc/ltsp/xorg.conf, and symlink it with a POST_INIT command
+2019-10-12T04:08:12  <alkisg> This simplifies the documentation, as we defer to "man xorg.conf" :D
+2019-10-12T04:09:04  <alkisg> (or to wayland configuration, if one is using wayland)
+2019-10-12T05:13:44  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c19f:868:6964:3b1f> has joined #ltsp
+2019-10-12T05:26:20  <alkisg> R4F4EL: you're using ltsp5 instead of the new ltsp19, is that what you need?
+2019-10-12T06:53:39  *** ltsp_user44 <ltsp_user44!5585c21c@85.133.194.28> has joined #ltsp
+2019-10-12T07:17:31  *** ltsp_user44 <ltsp_user44!5585c21c@85.133.194.28> has quit IRC (Ping timeout: 260 seconds)
+2019-10-12T07:24:24  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-12T07:51:03  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c19f:868:6964:3b1f> has quit IRC (Ping timeout: 246 seconds)
+2019-10-12T07:51:55  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has joined #ltsp
+2019-10-12T08:43:14  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has joined #ltsp
+2019-10-12T09:47:00  *** os_a <os_a!~Thunderbi@195.112.116.22> has joined #ltsp
+2019-10-12T10:07:43  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has quit IRC (Ping timeout: 268 seconds)
+2019-10-12T11:57:04  *** os_a <os_a!~Thunderbi@195.112.116.22> has quit IRC (Ping timeout: 264 seconds)
+2019-10-12T11:59:11  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has joined #ltsp
+2019-10-12T13:38:10  *** GodFather <GodFather!~rcc@217.sub-97-33-70.myvzw.com> has joined #ltsp
+2019-10-12T13:42:53  *** GodFather <GodFather!~rcc@217.sub-97-33-70.myvzw.com> has quit IRC (Ping timeout: 265 seconds)
+2019-10-12T15:54:44  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has quit IRC (Read error: Connection reset by peer)
+2019-10-12T15:55:27  *** shored <shored!~shored@87-92-122-167.bb.dnainternet.fi> has joined #ltsp
+2019-10-12T20:53:32  *** kjackal <kjackal!~quassel@athedsl-4546118.home.otenet.gr> has quit IRC (Ping timeout: 265 seconds)
+2019-10-12T21:03:40  *** ricotz <ricotz!~ricotz@ubuntu/member/ricotz> has quit IRC (Quit: Leaving)
+2019-10-12T21:29:15  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c19f:868:6964:3b1f> has joined #ltsp
+2019-10-12T21:40:33  *** woernie <woernie!~werner@p5B296156.dip0.t-ipconnect.de> has quit IRC (Remote host closed the connection)
+2019-10-12T21:45:11  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:c19f:868:6964:3b1f> has quit IRC (Ping timeout: 276 seconds)

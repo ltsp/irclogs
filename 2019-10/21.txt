@@ -1,0 +1,12 @@
+2019-10-21T03:04:07  *** vagrantc <vagrantc!~vagrant@unaffiliated/vagrantc> has quit IRC (Quit: leaving)
+2019-10-21T05:01:09  *** statler <statler!~Georg@p5B30EE2F.dip0.t-ipconnect.de> has joined #ltsp
+2019-10-21T05:45:48  <alkisg> !install
+2019-10-21T05:45:48  <ltsp> install: To install LTSP19+: https://github.com/ltsp/ltsp/wiki/installation. To install LTSP5: http://wiki.ltsp.org/wiki/Installation/Ubuntu for Ubuntu, or http://wiki.ltsp.org/wiki/Installation for other distributions
+2019-10-21T05:46:01  <alkisg> !forget install
+2019-10-21T05:46:01  <ltsp> An error has occurred and has been logged. Please contact this bot's administrator for more information.
+2019-10-21T05:47:07  <alkisg> !learn install as To install LTSP: https://ltsp.github.io/docs/installation/. To install the older LTSP5: http://wiki.ltsp.org/wiki/Installation/Ubuntu for Ubuntu, or http://wiki.ltsp.org/wiki/Installation for other distributions
+2019-10-21T05:47:07  <ltsp> An error has occurred and has been logged. Please contact this bot's administrator for more information.
+2019-10-21T05:47:15  <alkisg> Ah, again server space
+2019-10-21T05:49:07  *** kjackal <kjackal!~quassel@2a02:587:3107:2e00:d9b4:3637:5ad3:a6ac> has joined #ltsp
+2019-10-21T07:38:34  <ltsp> vnc-edide: To share your screen with me, open Epoptes → Help menu → Remote support → Host: srv1-dide.ioa.sch.gr, and click the Connect button
+2019-10-21T07:39:14  <ltsp> vnc-dide: To share your screen with me, run this: sudo apt-get --yes install x11vnc; x11vnc -connect srv1-dide.ioa.sch.gr - this is a reverse connection, it doesn't need port forwarding etc.
