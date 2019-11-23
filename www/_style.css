@@ -1,0 +1,123 @@
+body {
+  margin: 0px;
+}
+select {
+	font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+	font-size: 12px;
+	width: 200px;
+	margin-top: 2px;
+}
+input {
+	font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+	font-size: 12px;
+	margin-top: 2px;
+}
+.header {
+	position: fixed;
+	width: 100%;
+	height: 95px;
+	border-bottom: 2px solid black;
+	background-color: #D0E0FF;
+	background-image: url('LTSP_final_300.png');
+	background-repeat: no-repeat;
+	background-position: 10px 0px;
+	padding-left: 370px;
+	padding-top: 20px;
+	font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+	font-size: 12px;
+}
+.header .logo {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	margin-left: 10px;
+	border: none;
+}
+.header b {
+	font-size: 16px;
+}
+.header a {
+	color: #0080E0;
+	text-decoration: none;
+}
+.header .searchbox {
+	float: left;
+	margin-top: 18px;
+	margin-right: 40px;
+}
+.header .searchbox .username {
+	width: 100px;
+	margin-right: 4px;
+}
+.header .searchbox .keyword {
+	width: 240px;
+}
+.header .searchbox .novalue {
+	font-style: italic;
+	color: gray;
+}
+h1 {
+	position: fixed;
+	top: 117px;
+	left: 0px;
+	font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+	font-size: 13px;
+	background-color: white;
+	margin: 0px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-bottom: 14px;
+	width: 100%;
+}
+h1 span {
+	font-weight: normal;
+}
+.content {
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+	padding-top: 164px;
+	font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif;
+	font-size: 12px;
+}
+.content td {
+	font-size: 12px;
+	padding-right: 10px;
+	padding-bottom: 3px;
+}
+.content .username {
+	text-align: center;
+}
+.content .time {
+	color: gray;
+}
+.content .nickchange {
+	color: gray;
+	background-color: #F0F0F0;
+}
+.content .nickchange strong {
+	font-weight: normal;
+	color: black;
+}
+.content .joined {
+	color: gray;
+	background-color: #F0F0F0;
+}
+.content .joined strong {
+	font-weight: normal;
+	color: green;
+}
+.content .left {
+	color: gray;
+	background-color: #F0F0F0;
+}
+.content .left strong {
+	font-weight: normal;
+	color: darkred;
+}
+.content .botmsg {
+	color: darkblue;
+}
+.content .utctimes {
+	float: right;
+}
