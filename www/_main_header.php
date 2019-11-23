@@ -8,13 +8,13 @@
 	<meta charset="utf-8" />
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width" />
-	<title>Linux Terminal Server Project - <?php echo $title; ?></title>
+	<title>Linux Terminal Server Project - IRC Logs</title>
 	<meta name="description" content="<?php if (isset($description)) echo $description; ?>">
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="/stylesheets/foundation.css">
 	<link rel="stylesheet" href="/stylesheets/app.css">
 	<!--[if lt IE 9]>
-		<link rel="stylesheet" href="http://www.ltsp.org/stylesheets/ie.css">
+		<link rel="stylesheet" href="/stylesheets/ie.css">
 	<![endif]-->
 	<!-- IE Fix for HTML5 Tags -->
 	<!--[if lt IE 9]>
@@ -44,6 +44,6 @@
         <!-- header -->
         <div class="row">
 			<div class="twelve columns" style="display: flex; align-items: center">
-				<div><img class="logo" src="logo.png" alt="Linux Terminal Server Project - LTSP" /></div>
+				<div><a href="https://ltsp.org/"><img class="logo" src="logo.png" alt="Linux Terminal Server Project - LTSP" /></a></div>
 			</div>
 	    </div>
