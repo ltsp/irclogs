@@ -1,0 +1,87 @@
+/* Foundation v2.2 http://foundation.zurb.com */
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+
+
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+	.logo { z-index: 10; position: relative; }
+	.nav-bar { min-height: 48px; padding: 0px 5px 0px 5px; margin-top: -20px; margin-bottom: 20px; background: #484848; }
+        .nav-bar>li { border: none; }
+	.nav-bar>li>a { z-index: 20; float: left; display: block; margin: 10px 6px 10px 6px; }
+	.nav-bar>li>a.main { border: none; line-height: 14px; padding: 8px 10px 6px 10px; display: block; text-decoration: none; font-size: 16px; font-size: 1.6rem; color: #FFFFFF; }
+        .nav-bar>li>a.main:hover { background: #ffa800; }
+        .nav-bar>li>a.main.active { background: #ffa800; }
+        .nav-bar>li.icon { float: right; }
+        .nav-bar>li.icon>a { display: block; margin-left: 0px; max-width: 25px; max-height: 25px; }
+
+	.highlight { background-color: #dfe0e2; color:#535353; padding: 10px; margin: 5px; margin-bottom: 20px; }
+        .highlight img { margin-bottom: 4px; }
+	.highlight p { margin: 0px; }
+        .highlight strong { text-transform: capitalize; }
+        .highlight .button { line-height: 14px; font-size: 14px; margin-top: 8px; display: block; float: right; background: #484848; color: white; font-weight: bold; padding: 4px 14px; }
+	.highlight table { background: transparent; }
+	.highlight table tr { background: transparent !important; }
+        .highlight table th { font-size: 14px; padding: 0px; text-align: left; font-weight: normal; width: 150px; }
+        .highlight table td { font-size: 14px; padding: 0px; }
+
+	.footer { margin-top: 20px; margin-bottom: 20px; background-color: #dfe0e2; color:#535353; padding: 10px; }
+	.footer p { margin: 10px; }
+
+        p { margin-bottom: 10px; font-size: 14px; font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif; }
+	h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
+	h1 { font-size: 24px; font-size: 2.4rem; margin-bottom: 10px; color: #6fbc18; }
+	h2 { font-size: 18px; font-size: 1.8rem; margin-bottom: 6px; margin-top: 20px; color: #ffa800; }
+	h3 { font-size: 16px; font-size: 1.6rem; margin-bottom: 6px; }
+	h4 { font-size: 14px; font-size: 1.4rem; margin-bottom: 1px; }
+	h5 { font-size: 12px; font-size: 1.2rem; font-weight: normal; margin-bottom: 3px;  }
+	h6 { font-size: 10px; font-size: 1.0rem; font-weight: normal; }
+
+        .distrolink { font-size: 15px; line-height: 24px; }
+        .distrolink img { vertical-align: bottom; margin-right: 6px; }
+
+	.story_lastupdate { font-style: italic; }
+	.story_question { margin-bottom: 0px; font-weight: bold; }
+	.story_answer { margin-top: 0px; }
+
+	table input { width: 298px; font-size: 14px; border: 1px solid grey; font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif; }
+        table input[type="button"] { width: 300px; font-size: 14px; border: 1px solid grey; }
+	table textarea { width: 300px; font-size: 14px; border: 1px solid grey; overflow-y: scroll; font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif; }
+	table select { width: 300px; font-size: 14px; border: 1px solid grey; font-family: Verdana, "Bitstream Vera Sans", "DejaVu Sans", Tahoma, Geneva, Arial, Sans-serif; }
+	table .q { background: #f0f0f0; font-size: 14px; width: 220px; }
+	table .a { vertical-align: middle; }
+
+	#googlemaps-location-container { display: none; font-size: 14px; }
+	#googlemaps-location-container input {  border: none; width: 90px; margin-top: 8px; font-size: 14px; }
+	#googlemaps-location-frame { width: 298px; height: 200px; border: 1px solid black; }
+
+/* -----------------------------------------
+   Story Builder - Locations
+----------------------------------------- */
+
+ul {
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 10px;
+	list-style-type: square;
+}
+
+ul li {
+	margin-bottom: 5px;
+	margin-left: 14px;
+}
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */
+
+

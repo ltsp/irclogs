@@ -33,13 +33,16 @@
 
       arsort($this->dates);
 
-	echo file_get_contents('http://www.ltsp.org/_tmp_header.php');
-        include '_tmp_header.php';
+	    echo file_get_contents('./_main_header.php');
+      include '_tmp_header.php';
+
     }
     function __destruct()
     {
-        include '_tmp_footer.php';
-	echo file_get_contents('http://www.ltsp.org/_tmp_footer.php');
+      include '_tmp_footer.php';
+	    
+      // TODO:
+      //echo file_get_contents('./_main_footer.php');
     }
 
     function getUserColor($user)
