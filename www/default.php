@@ -11,7 +11,7 @@
     public $link_website = 'http://www.ltsp.org/';
     public $link_webchat = 'http://webchat.freenode.net/?channels=ltsp';
     public $searchlimit = 1000;
-    private $logdir = '/home/bot/logs/ChannelLogger/freenode/#ltsp/';  // logdir must end with slash
+    private $logdir = '/srv/bot/logs/ChannelLogger/freenode/#ltsp/';  // logdir must end with slash
     // end configuration
 
     private $dates = array();
