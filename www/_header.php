@@ -29,6 +29,7 @@
 </head>
 <body>
 
+<div class="flex-wrapper">
 	<!-- container -->
 	<div class="container">
 
