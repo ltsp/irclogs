@@ -8,8 +8,12 @@
 
 <?php
 require 'simple_html_dom.php';
-$html = file_get_html('https://ltsp.org/');
-echo $html->find('div[class=side-bar]')[0];
+if (!$html = file_get_html('https://ltsp.org/')) {
+	echo '<div style="padding-top: 20px;">Navigation failed. Please visit <a href="https://ltsp.org">ltsp.org</a>.</div>';
+	}
+else {
+	echo $html->find('div[class=side-bar]')[0];
+}
 ?>
 
 		<hr> 
