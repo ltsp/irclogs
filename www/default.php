@@ -33,8 +33,7 @@
 
       arsort($this->dates);
 
-	    echo file_get_contents('./_main_header.php');
-      include '_tmp_header.php';
+      include '_header.php';
 
     }
     function __destruct()
