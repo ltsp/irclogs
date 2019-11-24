@@ -38,10 +38,7 @@
     }
     function __destruct()
     {
-      include '_tmp_footer.php';
-	    
-      // TODO:
-      //echo file_get_contents('./_main_footer.php');
+      include '_footer.php';
     }
 
     function getUserColor($user)
