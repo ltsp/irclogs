@@ -1,6 +1,7 @@
 															
 </DIV> <!-- this div is inside the row with the rest of header and logs text -->
 </div>
+</div>
 <!-- now we are outside div and take up whole width of page -->
 	<div class="navfooter">
 		<div class="row">
