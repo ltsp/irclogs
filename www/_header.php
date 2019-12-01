@@ -5,10 +5,10 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<title>IRC Logs - LTSP</title>
-	<link rel="shortcut icon" href="https://ltsp.org/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>About | LTSP</title>
 	<meta property="og:title" content="IRC Logs" />
 	<meta property="og:locale" content="en_US" />
 	<meta name="description" content="Linux Terminal Server Project" />
