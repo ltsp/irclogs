@@ -24,7 +24,6 @@
 	<!-- Included CSS Files -->
 	<link rel="stylesheet" href="/stylesheets/foundation.css">
 	<link rel="stylesheet" href="/stylesheets/app.css">
-	<link rel="stylesheet" href="/stylesheets/navfooter.css">
 
 </head>
 <body>

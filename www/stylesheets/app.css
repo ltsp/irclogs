@@ -5,8 +5,8 @@
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
-:: Page Name 1
-:: Page Name 2
+:: Story Builder - Locations
+:: Navfooter for IRC logs
 */
 
 
@@ -81,7 +81,55 @@ ul li {
 }
 
 /* -----------------------------------------
-   Page Name 2
+   Navfooter for IRC logs
 ----------------------------------------- */
 
+.flex-wrapper {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.navfooter {
+	background-color: #f5f6fa;
+}
+
+.side-bar {
+	padding: 20px;
+	border: 0px;
+}
+
+
+nav {
+	border: 0px;
+}
+
+.navigation-list {
+	list-style: none;
+}
+
+a.navigation-list-link {
+	color: #7253ed;;
+}
+
+.main-nav {
+	column-count: 3;
+}
+
+.site-footer {
+	display: none;
+}
+
+button {
+	display: none;
+}
+
+nav ul li {
+	margin-left: 0px;
+}
+
+nav ul li ul {
+	display: none;
+}
 
