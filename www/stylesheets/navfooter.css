@@ -14,20 +14,23 @@
 	border: 0px;
 }
 
+.side-bar svg {
+    display: none;
+}
 
 nav {
 	border: 0px;
 }
 
-.navigation-list {
+.nav-list {
 	list-style: none;
 }
 
-a.navigation-list-link {
+a.nav-list-link {
 	color: #7253ed;;
 }
 
-.main-nav {
+.site-nav {
 	column-count: 3;
 }
 
