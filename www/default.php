@@ -7,11 +7,11 @@
     // configuration
     public $botname = 'ltsp';  // name of the bot making the logs is highlighted.  leave empty for none
     public $channel = '#ltsp';  // name of the channel
-    public $network = 'irc.freenode.net';  // name of the network or server
-    public $link_website = 'http://www.ltsp.org/';
-    public $link_webchat = 'http://webchat.freenode.net/?channels=ltsp';
+    public $network = 'irc.libera.chat';  // name of the network or server
+    public $link_website = 'https://ltsp.org/';
+    public $link_webchat = 'https://ts.sch.gr/repo/irc';
     public $searchlimit = 1000;
-    private $logdir = '/srv/bot/logs/ChannelLogger/freenode/#ltsp/';  // logdir must end with slash
+    private $logdir = '/srv/bot/logs/ChannelLogger/libera/#ltsp/';  // logdir must end with slash
     // end configuration
 
     private $dates = array();

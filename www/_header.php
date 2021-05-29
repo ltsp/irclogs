@@ -13,11 +13,11 @@
 	<meta property="og:locale" content="en_US" />
 	<meta name="description" content="Linux Terminal Server Project" />
 	<meta property="og:description" content="Linux Terminal Server Project" />
-	<link rel="canonical" href="http://irclogs.ltsp.org/" />
-	<meta property="og:url" content="http://irclogs.ltsp.org/" />
-	<meta property="og:site_name" content="LTSP" /> 
+	<link rel="canonical" href="https://irclogs.ltsp.org/" />
+	<meta property="og:url" content="https://irclogs.ltsp.org/" />
+	<meta property="og:site_name" content="LTSP" />
 	<!-- what this for?...
-	<script type="application/ld+json"> 
+	<script type="application/ld+json">
 		{"@type":"WebSite","headline":"About","url":"https://ltsp.org/","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"https://ltsp.org/logo.png"}},"name":"LTSP","description":"Linux Terminal Server Project","@context":"http://schema.org"}
 		</script>
 	-->
@@ -40,9 +40,9 @@
 				<div><a href="https://ltsp.org/"><img class="logo" src="logo.png" alt="Linux Terminal Server Project - LTSP" /></a></div>
 			</div>
 			<div>
-				<h1>IRC chat logs for #ltsp on irc.freenode.net (<A CLASS="webchatlink" TARGET="_blank" HREF="<?php echo $this->link_webchat; ?>">webchat</A>)</h1>
+				<h1>IRC chat logs for #ltsp on irc.libera.chat (<A CLASS="webchatlink" TARGET="_blank" HREF="<?php echo $this->link_webchat; ?>">webchat</A>)</h1>
 			</div>
-	   
+
 			<FORM ACTION="" METHOD="get">
 				<DIV CLASS="searchbox" STYLE="width: 220px; float: left;">
 				  Request log from specific day: <BR>
@@ -54,5 +54,5 @@
 				</DIV>
 			</FORM>
 			<BR STYLE="clear: both;">
-			
+
 			<DIV CLASS="irclogs">

@@ -1,3 +1,3 @@
 # IRC logs
 
-The web site behind http://irclogs.ltsp.org
+The web site behind https://irclogs.ltsp.org

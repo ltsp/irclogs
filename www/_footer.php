@@ -18,7 +18,7 @@ else {
 
 		<hr>
 		<footer role="contentinfo" style="padding: 0px 10px;">
-			<p class="text-small text-grey-dk-000 mb-0">Copyright &copy; 2000-2020 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a></p>
+			<p class="text-small text-grey-dk-000 mb-0">Copyright &copy; 2000-2021 the <a href="https://github.com/ltsp/ltsp/graphs/contributors">LTSP developers</a></p>
 		</footer>
 		</div>
 	</div>
